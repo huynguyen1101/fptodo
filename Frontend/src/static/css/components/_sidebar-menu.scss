@@ -1,0 +1,284 @@
+$primary-color: #38b6ff;
+$accent-color: #5cc3ff;
+
+$sidebar-width: 250px;
+
+.sidebar-menu {
+    background: $primary-color;
+    z-index: 1;
+    overflow: hidden;
+
+    .logo-details {
+        height: 60px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        i {
+            font-size: 30px;
+            color: #fff;
+            height: 50px;
+            min-width: 78px;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        .logo_name {
+            font-size: 22px;
+            color: #fff;
+            font-weight: 600;
+            transition: 0.3s ease;
+            transition-delay: 0.1s;
+        }
+    }
+
+    .profile-details {
+        position: fixed;
+        bottom: 0;
+        width: $sidebar-width;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: #1d1b31;
+        padding: 6px 0;
+        transition: all 0.5s ease;
+
+        .profile-content {
+            display: flex;
+            align-items: center;
+        }
+
+        img {
+            height: 52px;
+            width: 52px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 0 14px 0 12px;
+            background: #1d1b31;
+            transition: all 0.5s ease;
+        }
+
+        .profile_name,
+        .job {
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .job {
+            font-size: 12px;
+        }
+    }
+}
+
+.sidebar-menu .nav-links {
+    transition: all 0.5s ease;
+    height: 100%;
+    width: $sidebar-width;
+
+    li {
+        display: flex;
+        position: relative;
+        list-style: none;
+        transition: all 0.4s ease;
+        width: $sidebar-width;
+        background-color: $primary-color;
+        height: 50px;
+        letter-spacing: 2px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: $accent-color;
+        }
+
+        .icon-link {
+            display: flex;
+            position: relative;
+            width: 100%;
+
+            i.arrow {
+                position: absolute;
+                right: 0;
+                top: 12px;
+            }
+        }
+
+        &.show {
+            i.arrow {
+                transform: rotate(-180deg);
+                top: 19px;
+            }
+
+            .sub-menu {
+                // display: inline-table;
+                height: var(--height);
+            }
+        }
+
+        a {
+            margin: auto 0;
+
+            .link_name {
+                font-size: 18px;
+                font-weight: 400;
+                color: #fff;
+                transition: all 0.4s ease;
+            }
+        }
+
+        .sub-menu {
+            background: #1d1b31;
+            position: absolute;
+            height: 0px;
+            overflow: hidden;
+            top: 55px;
+            transition: all 0.5s ease;
+
+            .link_name {
+                font-size: 18px;
+                opacity: 1;
+                display: block;
+            }
+
+            a {
+                color: #fff;
+                font-size: 15px;
+                padding: 5px 0;
+                white-space: nowrap;
+                opacity: 0.6;
+                transition: all 0.3s ease;
+                width: 100%;
+                display: flex;
+
+                &:hover {
+                    opacity: 1;
+                }
+
+                span {
+                    width: 100%;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+
+            .link_name {
+                display: none;
+            }
+
+            li {
+                padding: 0 1.5rem;
+            }
+        }
+
+        i {
+            min-width: 60px;
+            text-align: center;
+            color: #fff;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            margin: auto 0;
+        }
+
+        .sub-menu1 {
+            padding: 6px 6px 14px 80px;
+            margin-top: -10px;
+            background: #1d1b31;
+            display: none;
+
+            a {
+                color: #fff;
+                font-size: 15px;
+                padding: 5px 0;
+                white-space: nowrap;
+                opacity: 0.6;
+                transition: all 0.3s ease;
+
+                &:hover {
+                    opacity: 1;
+                }
+            }
+
+            .link_name {
+                display: none;
+            }
+        }
+    }
+}
+
+// -------------CLOSE RULES-------------
+.sidebar-menu.close {
+    .logo-details .logo_name {
+        transition-delay: 0s;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .nav-links {
+        width: 60px;
+        overflow: visible;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        li {
+            &:hover .sub-menu {
+                top: 0;
+                opacity: 1;
+                pointer-events: auto;
+                transition: all 0.4s ease;
+            }
+
+            .sub-menu1 {
+                position: absolute;
+                left: 100%;
+                top: -10px;
+                margin-top: 0;
+                padding: 10px 20px;
+                border-radius: 0 6px 6px 0;
+                opacity: 0;
+                display: block;
+                pointer-events: none;
+                transition: 0s;
+
+                .link_name {
+                    font-size: 18px;
+                    opacity: 1;
+                    display: block;
+                }
+            }
+
+            &:hover .sub-menu1 {
+                top: 0;
+                opacity: 1;
+                pointer-events: auto;
+                transition: all 0.4s ease;
+            }
+        }
+
+        i.arrow {
+            display: none;
+        }
+    }
+
+    .profile-details {
+        background: none;
+        width: 78px;
+
+        i,
+        .profile_name,
+        .job {
+            display: none;
+        }
+
+        img {
+            padding: 10px;
+        }
+    }
+
+    ~ .home-section {
+        left: 78px;
+        width: calc(100% - 78px);
+    }
+}
