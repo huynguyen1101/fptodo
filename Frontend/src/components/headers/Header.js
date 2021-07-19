@@ -7,16 +7,29 @@ import React, {
 } from "react";
 import _ from "lodash";
 import logo from "../../static/img/Capture.PNG";
+import logo1 from "../../static/img/Capture.PNG";
 import SearchModal from "../modals/SearchModal";
 import ProfilePic from "../boards/ProfilePic";
-import { Link } from "react-router-dom";
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useBlurSetState from "../../hooks/useBlurSetState";
 import { handleBackgroundBrightness } from "../../static/js/util";
 import globalContext from "../../context/globalContext";
 import NotificationsModal from "../modals/NotificationsModal";
+import {BrowserRouter as Router,Switch,Route,Link, useHistory} from "react-router-dom";
+
+
 
 const Header = (props) => {
+    
+    let user = JSON.parse(localStorage.getItem('user-info'))
+    const history = useHistory();
+    function logOut(){
+        localStorage.clear();
+        history.push('/login')
+    }
+    const BrowserRouter = require("react-router-dom").BrowserRouter;
+    const Route = require("react-router-dom").Route;
+    const Link = require("react-router-dom").Link;
     const { authUser, board } = useContext(globalContext);
 
     const [searchQuery, setSearchQuery] = useState(""); //This variable keeps track of what to show in the search bar
@@ -55,8 +68,11 @@ const Header = (props) => {
                 <div className="header__section">
                     <ul className="header__list">
                         <li className="header__li">
+                           
                             <a>
-                                <i className="fab fa-trello"></i> Boards
+                                {/* <img src={logo1} width="20" height="20"   /> 
+                                <i> Boards </i>  */}
+                                 <img src={logo1} width="13px" height="12px"></img> Boards
                             </a>
                         </li>
                         <li
@@ -86,7 +102,7 @@ const Header = (props) => {
                     <ul className="header__list">
                         <li className="header__li header__li--profile">
                             <ProfilePic user={authUser} large={true} />
-                            Hi, {authUser.full_name.replace(/ .*/, "")}
+                            Hello, {authUser.full_name.replace(/ .*/, "")}
                         </li>
                         <li className="header__li header__li--notifications">
                             <button onClick={() => setShowNotifications(true)}>
@@ -96,11 +112,33 @@ const Header = (props) => {
                                 (notification) => notification.unread == true
                             ) && <div className="header__unread"></div>}
                         </li>
-                        <li className="header__li header__li--border">
-                            <a>
-                                <i className="fal fa-bars"></i>
-                            </a>
-                        </li>
+                        
+                       <Router>      
+                            <div className="dropdown">
+                                <button
+                                    className="dropdown-item"
+                                    type="button"
+                                    onClick={logOut} >Logout
+                                </button>
+                                    {/* <div className="dropdown-content">
+                                    <nav>
+                                        <ul>
+                                            <li>
+                                            <Link to="/">Profile</Link>
+                                            </li>
+                                            <li>
+                                            <Link to="/Login">Logout</Link>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                    {/* <Route path="/" exact component={Profile}/> */}
+                                    {/* <Route path="/frontend/src/pages/Login.js" exact component={logout} /> */}
+                                    {/* <div>
+                                          <a href="#" onClick={this.logout()}>LOGOUT</a>
+                                    </div>  */}
+                                   {/* // </div> } */}
+                                </div>
+                        </Router>   
                     </ul>
                 </div>
                 <div className="out-of-focus"></div>

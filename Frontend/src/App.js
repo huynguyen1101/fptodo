@@ -11,6 +11,8 @@ import Home from "./pages/Home";
 import Board from "./pages/Board";
 import Project from "./pages/Project";
 import Error404 from "./pages/Error404";
+import logOut from "./components/headers/Header";
+
 
 function App() {
     const { checkAuth, checkedAuth, authUser } = useContext(globalContext);
@@ -26,14 +28,16 @@ function App() {
     if (authUser)
         return (
             <>
-                <Route path="/" component={Header} />
+                <Route exact path="/" component={Header} />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/b/:id" component={Board} />
                     <Route exact path="/test" component={AddBoardModal} />
                     <Route exact path="/p/:id" component={Project} />
-                    <Route path="" component={Error404} />
+                    <Route  path="/" component={Login} />
+                    
                 </Switch>
+                
             </>
         );
     else
