@@ -15,7 +15,8 @@ const Home = () => {
     const [showAddBoardModal, setShowAddBoardModal] = useState(true);
     const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
     const [showTeamModal, setShowTeamModal] = useState(false);
-    const { data: projects, addItem: addProject } = useAxiosGet("/projects/");
+    const { data: projects, addItem: addProject } =  useAxiosGet("/projects/");
+    console.log(projects);
     const {
         data: boards,
         addItem: addBoard,
@@ -23,8 +24,26 @@ const Home = () => {
     } = useAxiosGet("/boards/"); // replaceBoard when you star or unstar
     const { data: recentlyViewedBoards } = useAxiosGet("/boards/?sort=recent");
     const [userBoards, projectBoards, starredBoards] = filterBoards(boards);
+    //const resultFilter = filterBoards(boards);
 
+    console.log([userBoards, projectBoards, starredBoards])
     if (!boards) return null;
+    const boardExist = [];
+    const checkExistBoard = projects.map((itemBoard) => {
+        const result = projectBoards.find((board) => {
+            if(board.id === itemBoard.id){
+                return true
+            }
+        });
+    console.log(result)
+        if(result){
+            return
+        } else{
+            boardExist.push(itemBoard)
+        }
+        
+    })
+    console.log(boardExist)
 
     return (
         <>
@@ -98,8 +117,7 @@ const Home = () => {
                             />
                         ))}
                     </div>
-
-                    {projectBoards.map((project) => (
+                    { projectBoards.length > 0  && projectBoards.map((project) => (
                         <React.Fragment key={uuidv4()}>
                             <div className="home__section">
                                 <p className="home__title">
@@ -139,12 +157,53 @@ const Home = () => {
                             <div className="home__boards">
                                 {project.boards.map((board) => (
                                     <HomeBoard
+                                        project={project}
                                         board={board}
                                         replaceBoard={replaceBoard}
                                         key={uuidv4()}
                                     />
                                 ))}
                             </div>
+                        </React.Fragment>
+                    ))}
+                    {  boardExist.map((project) => (
+                        <React.Fragment key={uuidv4()}>
+                            <div className="home__section">
+                                <p className="home__title">
+                                    <i className="fal fa-users"></i>{" "}
+                                    {project.title}
+                                </p>
+                                <div>
+                                    <Link
+                                        className="btn btn--secondary"
+                                        to={`/p/${project.id}`}
+                                    >
+                                        <i className="fab fa-trello"></i> Boards
+                                    </Link>
+                                    <Link
+                                        className="btn btn--secondary"
+                                        to={`/p/${project.id}?tab=2`}
+                                    >
+                                        <i className="fal fa-user"></i> Members
+                                    </Link>
+                                    <Link
+                                        className="btn btn--secondary"
+                                        to={`/p/${project.id}?tab=3`}
+                                    >
+                                        <i className="fal fa-cogs"></i> Settings
+                                    </Link>
+                                    <a
+                                        className="btn"
+                                        onClick={() => {
+                                            setBoardProject(project.id);
+                                            setShowAddBoardModal(true);
+                                        }}
+                                    >
+                                        <i className="fal fa-plus"></i> Create
+                                    </a>
+                                </div>
+                            </div>
+                            
                         </React.Fragment>
                     ))}
                 </div>

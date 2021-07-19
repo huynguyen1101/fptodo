@@ -1,6 +1,6 @@
 import uuid
 
-# import redis
+import redis
 from boards.models import Notification
 from django.conf import settings
 from django.contrib.contenttypes.models import ContentType
@@ -15,6 +15,7 @@ from rest_framework import generics, mixins, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from users.models import User
+import logging
 
 
 class ProjectList(mixins.ListModelMixin, mixins.CreateModelMixin,
@@ -125,10 +126,10 @@ class ProjectMemberDetail(APIView):
 
 
 site_url = "http://localhost:8000/"
-# r = redis.Redis(
-#     host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB,
-#     charset="utf-8", decode_responses=True
-# )
+r = redis.Redis(
+    host=settings.REDIS_HOST, port=settings.REDIS_PORT, db=settings.REDIS_DB,
+    charset="utf-8", decode_responses=True
+)
 
 
 class SendProjectInvite(APIView):
@@ -140,16 +141,23 @@ class SendProjectInvite(APIView):
         return project
 
     def post(self, request, pk):
+        logger = logging.getLogger("mylogger")
         project = self.get_object(pk)
         users = request.data.get('users', None)
-
+        logger.info(users)
         if users is None:
             return Response({'error': 'No users provided'}, status=status.HTTP_400_BAD_REQUEST)
         for username in users:
             try:
+                logger.info("Come here")
+                # 
                 user = User.objects.get(username=username)
+                logger.info("User: " )
                 # Can't invite a member
+                logger.info(ProjectMembership.objects.filter(project=project, member=user).exists())
+                logger.info(project.owner == user)
                 if ProjectMembership.objects.filter(project=project, member=user).exists() or project.owner == user:
+                    logger.info("Can't invite a member")
                     continue
 
                 token = str(uuid.uuid4())
@@ -159,21 +167,26 @@ class SendProjectInvite(APIView):
                 message = (f'Click on the following link to accept: {site_url}projects/join'
                            f'/{token}')
                 to_email = user.email
+                logger.info(to_email)
 
                 # if from_email=None, uses DEFAULT_FROM_EMAIL from settings.py
-                send_mail(subject, message, from_email=None,
+                result = send_mail(subject, message, from_email=None,
                           recipient_list=[to_email])
-
+                logger.info(result)
                 # Notification
                 Notification.objects.create(
                     actor=request.user, recipient=user, verb='invited you to', target=project)
+
+                if result==1:
+                    return Response({"message": "Email sent"}, status=status.HTTP_200_OK)
+                else:
+                    return Response({"message": "Email send failed"}, status=status.HTTP_406_NOT_ACCEPTABLE)
             except User.DoesNotExist:
                 continue
         return Response(status=status.HTTP_204_NO_CONTENT)
 
-
 class AcceptProjectInvite(APIView):
-    def post(self, request, token, format=None):
+    def get(self, request, token, format=None):
         redis_key = f'ProjectInvitation:{token}'
         invitation_exists = r.exists(redis_key)
         if invitation_exists == False:
