@@ -61,8 +61,8 @@ const Header = (props) => {
         <>
             <header
                 className={`header${isBackgroundDark && onBoardPage
-                        ? " header--transparent"
-                        : ""
+                    ? " header--transparent"
+                    : ""
                     }`}
             >
                 <div className="header__section">
@@ -94,7 +94,7 @@ const Header = (props) => {
                 </div>
                 <div className="header__section">
                     <Link to="/">
-                        {/* <img className="header__logo" src={logo} /> */}
+
                         <img className="landing-header__logo" src={logo} />
                     </Link>
                 </div>
