@@ -70,8 +70,7 @@ const Header = (props) => {
                         <li className="header__li">
 
                             <a>
-                                {/* <img src={logo1} width="20" height="20"   /> 
-                                <i> Boards </i>  */}
+
                                 <img src={logo1} width="13px" height="12px"></img> Boards
                             </a>
                         </li>
