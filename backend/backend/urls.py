@@ -48,6 +48,7 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('boards/', include('boards.urls')),
     path('me/', Me.as_view(), name="me"),
+    path('', include('users.urls')),
     # path('notifications/', NotificationList.as_view(), name="notification-list"),
     #    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     #    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
