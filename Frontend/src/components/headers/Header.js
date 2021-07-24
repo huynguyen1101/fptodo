@@ -6,24 +6,25 @@ import React, {
     useCallback,
 } from "react";
 import _ from "lodash";
-import logo from "../../static/img/Capture.PNG";
+import logo from "../../static/img/logo.png";
 import logo1 from "../../static/img/Capture.PNG";
 import SearchModal from "../modals/SearchModal";
 import ProfilePic from "../boards/ProfilePic";
+
 import useAxiosGet from "../../hooks/useAxiosGet";
 import useBlurSetState from "../../hooks/useBlurSetState";
 import { handleBackgroundBrightness } from "../../static/js/util";
 import globalContext from "../../context/globalContext";
 import NotificationsModal from "../modals/NotificationsModal";
-import {BrowserRouter as Router,Switch,Route,Link, useHistory} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 
 
 
 const Header = (props) => {
-    
+
     let user = JSON.parse(localStorage.getItem('user-info'))
     const history = useHistory();
-    function logOut(){
+    function logOut() {
         localStorage.clear();
         history.push('/login')
     }
@@ -59,26 +60,24 @@ const Header = (props) => {
     return (
         <>
             <header
-                className={`header${
-                    isBackgroundDark && onBoardPage
+                className={`header${isBackgroundDark && onBoardPage
                         ? " header--transparent"
                         : ""
-                }`}
+                    }`}
             >
                 <div className="header__section">
                     <ul className="header__list">
                         <li className="header__li">
-                           
+
                             <a>
                                 {/* <img src={logo1} width="20" height="20"   /> 
                                 <i> Boards </i>  */}
-                                 <img src={logo1} width="13px" height="12px"></img> Boards
+                                <img src={logo1} width="13px" height="12px"></img> Boards
                             </a>
                         </li>
                         <li
-                            className={`header__li header__li--search${
-                                searchQuery !== "" ? " header__li--active" : ""
-                            }`}
+                            className={`header__li header__li--search${searchQuery !== "" ? " header__li--active" : ""
+                                }`}
                             ref={searchElem}
                         >
                             <i className="far fa-search"></i>{" "}
@@ -95,7 +94,8 @@ const Header = (props) => {
                 </div>
                 <div className="header__section">
                     <Link to="/">
-                        <img className="header__logo" src={logo} />
+                        {/* <img className="header__logo" src={logo} /> */}
+                        <img className="landing-header__logo" src={logo} />
                     </Link>
                 </div>
                 <div className="header__section">
@@ -112,15 +112,15 @@ const Header = (props) => {
                                 (notification) => notification.unread == true
                             ) && <div className="header__unread"></div>}
                         </li>
-                        
-                       <Router>      
+
+                        <Router>
                             <div className="dropdown">
                                 <button
                                     className="dropdown-item"
                                     type="button"
                                     onClick={logOut} >Logout
                                 </button>
-                                    {/* <div className="dropdown-content">
+                                {/* <div className="dropdown-content">
                                     <nav>
                                         <ul>
                                             <li>
@@ -132,13 +132,13 @@ const Header = (props) => {
                                         </ul>
                                     </nav>
                                     {/* <Route path="/" exact component={Profile}/> */}
-                                    {/* <Route path="/frontend/src/pages/Login.js" exact component={logout} /> */}
-                                    {/* <div>
+                                {/* <Route path="/frontend/src/pages/Login.js" exact component={logout} /> */}
+                                {/* <div>
                                           <a href="#" onClick={this.logout()}>LOGOUT</a>
                                     </div>  */}
-                                   {/* // </div> } */}
-                                </div>
-                        </Router>   
+                                {/* // </div> } */}
+                            </div>
+                        </Router>
                     </ul>
                 </div>
                 <div className="out-of-focus"></div>
