@@ -28,7 +28,7 @@ function App() {
     if (authUser)
         return (
             <>
-                <Route exact path="/" component={Header} />
+                <Route path="/" component={Header} />
                 <Switch>
                     <Route exact path="/" component={Home} />
                     <Route exact path="/b/:id" component={Board} />

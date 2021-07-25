@@ -387,8 +387,8 @@ input::placeholder {
 .header__logo {
   -o-object-fit: cover;
   object-fit: cover;
-  height: 35px;
-  width: 330px;
+  height: auto;
+  width: 50%;
 }
 
 .header__list {
@@ -1380,7 +1380,7 @@ input::placeholder {
   background-color: #f6f7fb;
   width: 100vw;
   margin-top: 65px;
-  height: calc(100vh - 65px);
+  height: AUTO;
   position: relative;
 }
 
@@ -1427,6 +1427,7 @@ input::placeholder {
   flex: 5;
   padding-left: 1.5em;
   margin: 13px 70px 0px 0px;
+  
 }
 
 .home__section {

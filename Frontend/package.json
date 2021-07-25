@@ -6,10 +6,11 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
-    "axios": "^0.20.0",
+    "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "humanize-duration": "^3.24.0",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
+    "node-sass": "^4.14.0",
     "qs": "^6.9.4",
     "react": "^16.13.1",
     "react-beautiful-dnd": "^13.0.0",
@@ -17,7 +18,11 @@
     "react-hook-form": "^6.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
+<<<<<<< HEAD
     "sass": "^1.36.0",
+=======
+    "sass-loader": "^11.1.1",
+>>>>>>> 8bb3cc34e70dc7fce947129ee72405b1e4aeb878
     "uuid": "^8.3.1"
   },
   "scripts": {
