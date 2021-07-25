@@ -19,7 +19,7 @@ from django.contrib import admin
 from django.urls import include, path, re_path
 from rest_framework import permissions
 from rest_framework_simplejwt import views as jwt_views
-from users.views import Me, RegisterUser
+from users.views import Me, RegisterUser, UpdateProfileView
 from boards.views import NotificationList
 
 # from drf_yasg.views import get_schema_view
@@ -49,6 +49,7 @@ urlpatterns = [
     path('boards/', include('boards.urls')),
     path('me/', Me.as_view(), name="me"),
     path('', include('users.urls')),
+    path('update_profile/<int:pk>/', UpdateProfileView.as_view(), name='update_profile'),
     # path('notifications/', NotificationList.as_view(), name="notification-list"),
     #    re_path(r'^swagger(?P<format>\.json|\.yaml)$', schema_view.without_ui(cache_timeout=0), name='schema-json'),
     #    re_path(r'^swagger/$', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
