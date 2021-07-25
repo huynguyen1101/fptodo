@@ -18,11 +18,7 @@
     "react-hook-form": "^6.9.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.3",
-<<<<<<< HEAD
-    "sass": "^1.36.0",
-=======
     "sass-loader": "^11.1.1",
->>>>>>> 8bb3cc34e70dc7fce947129ee72405b1e4aeb878
     "uuid": "^8.3.1"
   },
   "scripts": {
