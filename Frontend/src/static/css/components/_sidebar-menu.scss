@@ -7,6 +7,8 @@ $sidebar-width: 250px;
     background: $primary-color;
     z-index: 1;
     overflow: hidden;
+    height: 100vh;
+    max-height: 100%;
 
     .logo-details {
         height: 60px;
@@ -90,6 +92,11 @@ $sidebar-width: 250px;
         &:hover {
             cursor: pointer;
             background-color: $accent-color;
+        }
+        i.blank {
+            position: absolute;
+            right: 0;
+            top: 12px;
         }
 
         .icon-link {
@@ -228,6 +235,11 @@ $sidebar-width: 250px;
                 opacity: 1;
                 pointer-events: auto;
                 transition: all 0.4s ease;
+            }
+
+            i.blank {
+                transform: rotate(-180deg);
+                left: -195px;
             }
 
             .sub-menu1 {

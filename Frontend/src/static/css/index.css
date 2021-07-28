@@ -151,6 +151,7 @@ img {
 a {
   text-decoration: none;
   cursor: pointer;
+  width: 100%;
 }
 
 input:focus,
@@ -1427,7 +1428,6 @@ input::placeholder {
   flex: 5;
   padding-left: 1.5em;
   margin: 13px 70px 0px 0px;
-  
 }
 
 .home__section {

@@ -44,7 +44,9 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
 
             <ul className="nav-links">
                 <li onClick={handleClick}>
-                    <i className="fas fa-bars" ></i>
+
+                    <i class="far fa-arrow-alt-circle-left blank" ></i>
+
                 </li>
                 <li>
 
@@ -71,8 +73,8 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
                         <span className="link_name">Feed</span>
                     </a>
                 </li>
-                <li>
-                    <a href="#">
+                <li >
+                    <a href="/user/">
                         <i className="fas fa-user"></i>
                         <span className="link_name">User</span>
                     </a>
@@ -108,7 +110,7 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
                     </ul>
                 </li>
             </ul>
-        </div>
+        </div >
     );
 };
 

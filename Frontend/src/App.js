@@ -12,6 +12,8 @@ import Board from "./pages/Board";
 import Project from "./pages/Project";
 import Error404 from "./pages/Error404";
 import logOut from "./components/headers/Header";
+import UserProfile from "./pages/UserProfile";
+import User from "./pages/User";
 
 
 function App() {
@@ -31,14 +33,17 @@ function App() {
                 <Route path="/" component={Header} />
                 <Switch>
                     <Route exact path="/" component={Home} />
+                    <Route exact path="/user/" component={User} />
                     <Route exact path="/b/:id" component={Board} />
                     <Route exact path="/test" component={AddBoardModal} />
                     <Route exact path="/p/:id" component={Project} />
-                    <Route  path="/" component={Login} />
-                    
+                    <Route path="/" component={Login} />
+                    <Route path="" component={Error404} />
+
                 </Switch>
-                
+
             </>
+
         );
     else
         return (
