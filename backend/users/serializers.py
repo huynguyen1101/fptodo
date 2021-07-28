@@ -10,17 +10,6 @@ class UserSerializer(serializers.ModelSerializer):
         extra_kwargs = {'password': {'write_only': True}, 
                         'first_name': {'write_only': True},
                         'last_name': {'write_only': True}}
-                        
-class UpdateUserSerializer(serializers.ModelSerializer):
-    email = serializers.EmailField(required=True)
-
-    class Meta:
-        model = User
-        fields = ('username', 'first_name', 'last_name', 'email')
-        extra_kwargs = {
-            'first_name': {'required': True},
-            'last_name': {'required': True},
-        }
 
     def create(self, validated_data):
         user = User.objects.create(
@@ -36,7 +25,20 @@ class UpdateUserSerializer(serializers.ModelSerializer):
         user.set_password(validated_data['password'])
         user.save()
 
-        return user
+        return user                    
+                        
+class UpdateUserSerializer(serializers.ModelSerializer):
+    email = serializers.EmailField(required=True)
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email')
+        extra_kwargs = {
+            'first_name': {'required': True},
+            'last_name': {'required': True},
+        }
+
+    
 
     def validate_email(self, value):
         user = self.context['request'].user
