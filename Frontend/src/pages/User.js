@@ -173,6 +173,13 @@ const User = () => {
           addProject={addProject}
         />
       )}
+      {showAddBoardModal && (
+        <AddBoardModal
+          setShowAddBoardModal={setShowAddBoardModal}
+          addBoard={addBoard}
+          project={boardProject}
+        />
+      )}
 
     </>
   );
