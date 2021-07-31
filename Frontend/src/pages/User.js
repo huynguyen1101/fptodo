@@ -173,13 +173,13 @@ const User = () => {
           addProject={addProject}
         />
       )}
-      {showAddBoardModal && (
+      {/* {showAddBoardModal && (
         <AddBoardModal
           setShowAddBoardModal={setShowAddBoardModal}
           addBoard={addBoard}
           project={boardProject}
         />
-      )}
+      )} */}
 
     </>
   );
