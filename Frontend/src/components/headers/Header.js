@@ -69,10 +69,10 @@ const Header = (props) => {
                     <ul className="header__list">
                         <li className="header__li">
 
-                            {/* <a>
+                            <a>
 
                                 <img src={logo1} width="13px" height="12px"></img> Boards
-                            </a> */}
+                            </a>
                         </li>
                         <li
                             className={`header__li header__li--search${searchQuery !== "" ? " header__li--active" : ""
