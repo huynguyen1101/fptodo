@@ -16,7 +16,7 @@ const useAxiosGet = (url, onSite = true) => {
             url = onSite ? backendUrl + url : url;
 
             try {
-                const res = await axiosUsed.get(url);
+                const res = await axiosUsed.get(url, {timeout: 10000});
                 if (!unmounted) {
                     setData(res.data);
                     setLoading(false);

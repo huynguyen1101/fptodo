@@ -1,0 +1,6 @@
+Faker==8.0.0
+requests==2.25.1
+robotframework-selenium2library==3.0.0
+selenium==3.141.0
+robotframework==4.0.1
+robotframework-faker==5.0.0

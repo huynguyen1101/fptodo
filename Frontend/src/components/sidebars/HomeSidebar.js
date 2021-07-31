@@ -45,7 +45,7 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
             <ul className="nav-links">
                 <li onClick={handleClick}>
 
-                    <i class="far fa-arrow-alt-circle-left blank" ></i>
+                    <i className="far fa-arrow-alt-circle-left blank" ></i>
 
                 </li>
                 <li>
