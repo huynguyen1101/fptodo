@@ -1380,8 +1380,8 @@ input::placeholder {
   display: flex;
   background-color: #f6f7fb;
   width: 100vw;
-  margin-top: 65px;
-  height: AUTO;
+  padding-top: 65px;
+  height: 100vh;
   position: relative;
 }
 
@@ -1426,8 +1426,9 @@ input::placeholder {
   -webkit-box-flex: 5;
   -ms-flex: 5;
   flex: 5;
-  padding-left: 1.5em;
-  margin: 13px 70px 0px 0px;
+  padding: 1.5rem;
+  overflow: auto;
+  /* margin: 13px 70px 0px 0px; */
 }
 
 .home__section {
@@ -2087,120 +2088,6 @@ input::placeholder {
   color: #838282;
 }
 
-.addboard-modal {
-  top: 0;
-  right: 50%;
-  -webkit-transform: translateX(50%);
-  transform: translateX(50%);
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  position: fixed;
-  z-index: 4;
-}
-
-.addboard-modal__title-block {
-  height: 160px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 5px;
-  width: 350px;
-}
-
-.addboard-modal__title {
-  border: 0;
-  font-weight: 600;
-  color: white;
-  margin-left: 0.5em;
-  margin-top: 0.5em;
-  background-color: transparent;
-  border-radius: 5px;
-  padding: 0.5em;
-  font-size: 1.125rem;
-}
-
-.addboard-modal__title:hover,
-.addboard-modal__title:focus {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.addboard-modal__title::-webkit-input-placeholder {
-  color: #bcbcbc;
-}
-
-.addboard-modal__title:-ms-input-placeholder {
-  color: #bcbcbc;
-}
-
-.addboard-modal__title::-ms-input-placeholder {
-  color: #bcbcbc;
-}
-
-.addboard-modal__title::placeholder {
-  color: #bcbcbc;
-}
-
-.addboard-modal__exit {
-  float: right;
-  margin-right: 1em;
-  margin-top: 1em;
-  font-size: 1.125rem;
-  color: white;
-}
-
-.addboard-modal__create {
-  margin-top: 0.5em;
-}
-
-.addboard-modal__right {
-  margin-left: 0.5em;
-  width: 200px;
-}
-
-.addboard-modal__color-box {
-  height: 48px;
-  width: 48px;
-  border: 0;
-  border-radius: 5px;
-  margin-bottom: 0.5em;
-  margin-right: 0.5em;
-  position: relative;
-  background-color: white;
-}
-
-.addboard-modal__color-box > i {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  -webkit-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-  color: white;
-  font-size: 1.6rem;
-}
-
-.addboard-modal__color-box:hover {
-  -webkit-filter: brightness(90%);
-  filter: brightness(90%);
-}
-
-.addboard-modal__color-box--img {
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-.addboard-modal__color-box--tick {
-  -webkit-filter: brightness(70%);
-  filter: brightness(70%);
-}
-
-.addboard-modal__color-box .fa-ellipsis-h {
-  color: #838282;
-}
-
-.addboard-modal .btn--disabled {
-  background-color: lightgray;
-}
-
 .team__header {
   padding: 100px 50px 0;
   background-color: #f6f7fb;
@@ -2567,3 +2454,5 @@ input::placeholder {
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
 }
+
+@import "./components/_addboard-modal.scss";

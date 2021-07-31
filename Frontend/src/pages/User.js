@@ -15,7 +15,13 @@ import a from "../static/img/404.jpg";
 // import 'bootstrap/dist/css/bootstrap.css';
 
 
-const User = () => {
+const User = (props) => {
+
+  // const { id } = props.match.params;
+  // const [addingList, setAddingList] = useState(false);
+  // const { data: board, setData: setBoard, loading } = useAxiosGet(
+  //   `/user/${id}/`
+  // );
   useDocumentTitle("Boards | FPTODO");
   const [showAddBoardModal, setShowAddBoardModal] = useState(true);
   const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
@@ -29,7 +35,7 @@ const User = () => {
   } = useAxiosGet("/boards/"); // replaceBoard when you star or unstar
   const { data: recentlyViewedBoards } = useAxiosGet("/boards/?sort=recent");
   const [userBoards, projectBoards, starredBoards] = filterBoards(boards);
-  //const resultFilter = filterBoards(boards);
+  const resultFilter = filterBoards(boards);
 
   console.log([userBoards, projectBoards, starredBoards])
   if (!boards) return null;
