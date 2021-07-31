@@ -1,0 +1,205 @@
+@import "../base/layout";
+
+.card-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-account {
+    background-color: rgb(255, 255, 255);
+    box-shadow: 1px 3px rgb(200, 199, 199);
+    border-radius: 12px;
+    flex: 2;
+    height: 70vh;
+    margin-bottom: 2rem;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        flex: unset;
+    }
+
+    width: 400px;
+    box-shadow: #4680ff;
+    text-align: center;
+    .center {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 300px;
+        border-radius: 70%;
+        margin-top: 10px;
+    }
+}
+.card-info {
+    background-color: rgb(255, 255, 255);
+    border-radius: 12px;
+    margin-left: 20px;
+    flex: 3;
+    width: 50%;
+    padding: 15px;
+    margin-bottom: 2rem;
+
+    @media (max-width: 1024px) {
+        width: 100%;
+        margin: 0;
+        flex: unset;
+    }
+
+    .card-header {
+        border: 0;
+        background: #fff;
+        border-radius: 12px;
+        h1 {
+            margin-top: 10px;
+            margin-bottom: 0.75rem;
+            font-size: 1.57em;
+            line-height: 1.4em;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+    }
+    .card-body {
+        background-color: #fff;
+        border-radius: 12px;
+
+        // .row {
+        //     // display: -webkit-flex;
+        //     display: flex;
+        //     // -webkit-flex-wrap: wrap;
+        //     flex-wrap: wrap;
+        //     margin-right: -15px;
+        //     margin-left: -15px;
+        //     .company{
+
+        //     }
+        //     .firstname {
+        //         width: 50%;
+        //     }
+        //     .lastname {
+        //         width: 50%;
+        //     }
+        //     .address {
+        //         width: 100%;
+        //     }
+
+        //     .about {
+        //         position: relative;
+        //         width: 100%;
+        //         padding-right: 15px;
+        //         padding-left: 15px;
+        //     }
+        //     .form-group {
+        //         padding: 10px;
+        //         margin-bottom: 20px;
+
+        //         label {
+        //             font-size: 0.8571em;
+        //             margin-bottom: 5px;
+        //             color: #9a9a9a;
+        //             display: inline-block;
+        //         }
+
+        //         input {
+        //             position: relative;
+        //         }
+        //         .form-control {
+        //             margin: auto;
+        //             padding: 10px;
+        //             height: unset;
+        //             border: 1px solid #ddd;
+        //             border-radius: 4px;
+        //             line-height: normal;
+        //             font-size: 14px;
+        //             box-shadow: none;
+        //             display: block;
+        //             width: 100%;
+        //             font-weight: 400;
+        //             background-clip: padding-box;
+        //         }
+
+        //         textarea {
+        //             max-width: 100%;
+        //             max-height: 80px;
+        //             overflow: auto;
+        //             resize: none;
+        //             border: 1px solid #e3e3e3;
+        //             border-radius: 4px;
+        //             line-height: 2;
+        //             .form-control {
+        //                 width: 100%;
+        //                 resize: none;
+        //                 border: 1px solid #e3e3e3;
+        //                 border-radius: 4px;
+        //                 line-height: 2;
+        //             }
+        //         }
+        //     }
+        //     .update {
+        //         margin-left: auto;
+        //         margin-right: auto;
+        //
+        //     }
+        // }
+    }
+}
+
+.card-title {
+    font-weight: 600;
+    font-size: 24px;
+    margin-bottom: 1rem;
+    padding: 0 10px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+
+    .form-control:disabled,
+    .form-control[readonly] {
+        background-color: #e9ecef;
+        opacity: 1;
+    }
+
+    label {
+        display: inline-block;
+        font-size: 14px;
+        color: #9d9d9d;
+        font-weight: 500;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        display: block;
+        width: 100%;
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        -webkit-appearance: none;
+        appearance: none;
+        border-radius: 0.25rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    textarea {
+        min-height: 150px;
+    }
+}
+
+.btn-wrapper {
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.btn-update {
+    border-radius: 16px;
+    background-color: #51cbce;
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: none;
+    padding: 10px 20px;
+}
