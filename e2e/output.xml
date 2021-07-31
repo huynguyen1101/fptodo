@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 3.2.1 (Python 3.6.5 on win32)" generated="20210721 23:18:20.667" rpa="false">
+<suite id="s1" name="E2E" source="D:\đồ án\Frontend\fptodo\e2e">
+<suite id="s1-s1" name="User" source="D:\đồ án\Frontend\fptodo\e2e\user.robot">
+<test id="s1-s1-t1" name="Valid Login">
+<kw name="Open Browser To Home Page" library="resource">
+<kw name="Open Browser" library="SeleniumLibrary">
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<arguments>
+<arg>${WELCOME URL}</arg>
+<arg>${BROWSER}</arg>
+</arguments>
+<msg timestamp="20210721 23:18:21.811" level="INFO">Opening browser 'chrome' to base url 'http://localhost:3000/'.</msg>
+<status status="PASS" starttime="20210721 23:18:21.810" endtime="20210721 23:18:25.788"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20210721 23:18:30.796" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210721 23:18:25.790" endtime="20210721 23:18:30.796"></status>
+</kw>
+<kw name="Maximize Browser Window" library="SeleniumLibrary">
+<doc>Maximizes current browser window.</doc>
+<status status="PASS" starttime="20210721 23:18:30.797" endtime="20210721 23:18:30.967"></status>
+</kw>
+<kw name="Set Selenium Speed" library="SeleniumLibrary">
+<doc>Sets the delay that is waited after each Selenium command.</doc>
+<arguments>
+<arg>${DELAY}</arg>
+</arguments>
+<status status="PASS" starttime="20210721 23:18:30.967" endtime="20210721 23:18:30.968"></status>
+</kw>
+<kw name="Home Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>FPTODO</arg>
+</arguments>
+<msg timestamp="20210721 23:18:30.979" level="INFO">Page title is 'FPTODO'.</msg>
+<status status="PASS" starttime="20210721 23:18:30.969" endtime="20210721 23:18:30.980"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:30.969" endtime="20210721 23:18:30.980"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:21.809" endtime="20210721 23:18:30.981"></status>
+</kw>
+<kw name="Go To Login Page" library="resource">
+<kw name="Go To" library="SeleniumLibrary">
+<doc>Navigates the current browser window to the provided ``url``.</doc>
+<arguments>
+<arg>${LOGIN URL}</arg>
+</arguments>
+<msg timestamp="20210721 23:18:30.983" level="INFO">Opening url 'http://localhost:3000/login'</msg>
+<status status="PASS" starttime="20210721 23:18:30.982" endtime="20210721 23:18:31.226"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20210721 23:18:36.232" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210721 23:18:31.227" endtime="20210721 23:18:36.234"></status>
+</kw>
+<kw name="Login Page Should Be Open" library="resource">
+<kw name="Title Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current page title equals ``title``.</doc>
+<arguments>
+<arg>Login | FPTODO</arg>
+</arguments>
+<msg timestamp="20210721 23:18:36.266" level="INFO">Page title is 'Login | FPTODO'.</msg>
+<status status="PASS" starttime="20210721 23:18:36.239" endtime="20210721 23:18:36.267"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:36.236" endtime="20210721 23:18:36.268"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:30.981" endtime="20210721 23:18:36.269"></status>
+</kw>
+<kw name="Input Username" library="resource">
+<arguments>
+<arg>hong</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${USENAME FIELD}</arg>
+<arg>${username}</arg>
+</arguments>
+<msg timestamp="20210721 23:18:36.274" level="INFO">Typing text 'hong' into text field '//*[@id="root"]/div[2]/div[2]/form/fieldset/input[1]'.</msg>
+<status status="PASS" starttime="20210721 23:18:36.272" endtime="20210721 23:18:36.567"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:36.270" endtime="20210721 23:18:36.567"></status>
+</kw>
+<kw name="Inputt Password" library="resource">
+<arguments>
+<arg>123456789</arg>
+</arguments>
+<kw name="Input Text" library="SeleniumLibrary">
+<doc>Types the given ``text`` into the text field identified by ``locator``.</doc>
+<arguments>
+<arg>${PASSWORD FIELD}</arg>
+<arg>${password}</arg>
+</arguments>
+<msg timestamp="20210721 23:18:36.569" level="INFO">Typing text '123456789' into text field '//*[@id="root"]/div[2]/div[2]/form/fieldset/input[2]'.</msg>
+<status status="PASS" starttime="20210721 23:18:36.568" endtime="20210721 23:18:36.696"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:36.568" endtime="20210721 23:18:36.697"></status>
+</kw>
+<kw name="Submit Credentials" library="resource">
+<kw name="Click Button" library="SeleniumLibrary">
+<doc>Clicks the button identified by ``locator``.</doc>
+<arguments>
+<arg>${lOGIN BUTTON}</arg>
+</arguments>
+<msg timestamp="20210721 23:18:36.698" level="INFO">Clicking button '//*[@id="root"]/div[2]/div[2]/form/fieldset/button'.</msg>
+<status status="PASS" starttime="20210721 23:18:36.698" endtime="20210721 23:18:36.775"></status>
+</kw>
+<status status="PASS" starttime="20210721 23:18:36.697" endtime="20210721 23:18:36.775"></status>
+</kw>
+<kw name="Sleep" library="BuiltIn">
+<doc>Pauses the test executed for the given time.</doc>
+<arguments>
+<arg>5</arg>
+</arguments>
+<msg timestamp="20210721 23:18:41.780" level="INFO">Slept 5 seconds</msg>
+<status status="PASS" starttime="20210721 23:18:36.775" endtime="20210721 23:18:41.781"></status>
+</kw>
+<kw name="Welcome Page Should Be Open" library="resource">
+<kw name="Location Should Be" library="SeleniumLibrary">
+<doc>Verifies that the current URL is exactly ``url``.</doc>
+<arguments>
+<arg>${WELCOME URL}</arg>
+</arguments>
+<kw name="Capture Page Screenshot" library="SeleniumLibrary">
+<doc>Takes a screenshot of the current page and embeds it into a log file.</doc>
+<msg timestamp="20210721 23:18:42.174" level="INFO" html="yes">&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td colspan="3"&gt;&lt;a href="selenium-screenshot-14.png"&gt;&lt;img src="selenium-screenshot-14.png" width="800px"&gt;&lt;/a&gt;</msg>
+<status status="PASS" starttime="20210721 23:18:41.801" endtime="20210721 23:18:42.175"></status>
+</kw>
+<msg timestamp="20210721 23:18:42.183" level="FAIL">Location should have been 'http://localhost:3000/' but was 'http://localhost:3000/login'.</msg>
+<status status="FAIL" starttime="20210721 23:18:41.784" endtime="20210721 23:18:42.183"></status>
+</kw>
+<status status="FAIL" starttime="20210721 23:18:41.782" endtime="20210721 23:18:42.184"></status>
+</kw>
+<kw name="Close Browser" library="SeleniumLibrary" type="teardown">
+<doc>Closes the current browser.</doc>
+<status status="PASS" starttime="20210721 23:18:42.184" endtime="20210721 23:18:44.634"></status>
+</kw>
+<tags>
+<tag>tag1</tag>
+</tags>
+<status status="FAIL" starttime="20210721 23:18:21.807" endtime="20210721 23:18:44.635" critical="yes">Location should have been 'http://localhost:3000/' but was 'http://localhost:3000/login'.</status>
+</test>
+<status status="FAIL" starttime="20210721 23:18:21.359" endtime="20210721 23:18:44.640"></status>
+</suite>
+<status status="FAIL" starttime="20210721 23:18:21.307" endtime="20210721 23:18:44.650"></status>
+</suite>
+<statistics>
+<total>
+<stat pass="0" fail="1">Critical Tests</stat>
+<stat pass="0" fail="1">All Tests</stat>
+</total>
+<tag>
+<stat pass="0" fail="1">tag1</stat>
+</tag>
+<suite>
+<stat pass="0" fail="1" id="s1" name="E2E">E2E</stat>
+<stat pass="0" fail="1" id="s1-s1" name="User">E2E.User</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>

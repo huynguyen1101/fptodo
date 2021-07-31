@@ -15,8 +15,7 @@ const Home = () => {
     const [showAddBoardModal, setShowAddBoardModal] = useState(true);
     const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
     const [showTeamModal, setShowTeamModal] = useState(false);
-    const { data: projects, addItem: addProject } =  useAxiosGet("/projects/");
-    console.log(projects);
+    let { data: projects, addItem: addProject } =  useAxiosGet("/projects/");
     const {
         data: boards,
         addItem: addBoard,
@@ -28,6 +27,9 @@ const Home = () => {
 
     console.log([userBoards, projectBoards, starredBoards])
     if (!boards) return null;
+    if (!projects) {
+        projects = [];
+    }
     const boardExist = [];
     const checkExistBoard = projects.map((itemBoard) => {
         const result = projectBoards.find((board) => {
