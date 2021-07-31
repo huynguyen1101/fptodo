@@ -10,7 +10,7 @@ from users.models import User
 from users.serializers import UserSerializer
 
 from .models import Attachment, Board, Comment, Item, Label, List, Notification
-
+import logging
 
 class LabelSerializer(serializers.ModelSerializer):
 
@@ -142,8 +142,10 @@ class NotificationSerializer(serializers.ModelSerializer):
         return serializer_class(obj.target).data
 
     def get_action_object(self, obj):
-        object_app = obj.action_object._meta.app_label
-        object_name = obj.action_object._meta.object_name
-        serializer_module_path = f'{object_app}.serializers.{object_name}Serializer'
-        serializer_class = import_string(serializer_module_path)
-        return serializer_class(obj.action_object).data
+        logger = logging.getLogger("mylogger")
+        logger.info(obj)
+        # object_app = obj.action_object._meta.app_label
+        # object_name = obj.action_object._meta.object_name
+        # serializer_module_path = f'{object_app}.serializers.{object_name}Serializer'
+        # serializer_class = import_string(serializer_module_path)
+        # return serializer_class(obj.action_object).data
