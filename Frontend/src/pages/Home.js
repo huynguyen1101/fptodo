@@ -15,12 +15,9 @@ const Home = () => {
     const [showAddBoardModal, setShowAddBoardModal] = useState(false);
     const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
     const [showTeamModal, setShowTeamModal] = useState(false);
-<<<<<<< HEAD
     const { data: projects, addItem: addProject } = useAxiosGet("/projects/");
     console.log(projects);
-=======
-    let { data: projects, addItem: addProject } =  useAxiosGet("/projects/");
->>>>>>> 9845067fde482b5b900d5b8ceb9f2b51099bde06
+    let { data: projects, addItem: addProject } = useAxiosGet("/projects/");
     const {
         data: boards,
         addItem: addBoard,
