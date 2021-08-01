@@ -21,14 +21,154 @@
     width: 400px;
     box-shadow: #4680ff;
     text-align: center;
-    .center {
-        display: block;
-        margin-left: auto;
-        margin-right: auto;
-        width: 300px;
-        border-radius: 70%;
-        margin-top: 10px;
+    // .center {
+    //     display: block;
+    //     margin-left: auto;
+    //     margin-right: auto;
+    //     width: 300px;
+    //     border-radius: 70%;
+    //     margin-top: 10px;
+    // }
+    .card-user {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        .image {
+            height: 200px;
+            overflow: hidden;
+            // height: 200px;
+            position: relative;
+            background-color: black;
+            .bg4-user {
+                border-radius: 12px;
+                max-width: 100%;
+                vertical-align: middle;
+                border-style: none;
+            }
+        }
+        .card-body {
+            min-height: 240px;
+            padding: 15px 15px 10px;
+            -webkit-flex: 1 1 auto;
+            flex: 1 1 auto;
+            min-height: 1px;
+            padding: 1.25rem;
+            .author {
+                text-align: center;
+                text-transform: none;
+                margin-top: -140px;
+                a {
+                    color: #007bff;
+                    text-decoration: none;
+                    background-color: initial;
+                    .avatar-user {
+                        width: 240px;
+                        height: 240px;
+                        border: 1px solid #fff;
+                        position: relative;
+                        overflow: hidden;
+                        border-radius: 50%;
+                        margin-bottom: 15px;
+
+                        margin: auto;
+                    }
+                    .title {
+                        font-weight: 700;
+                        font-size: 1.57em;
+                        line-height: 1.4em;
+                        margin-top: 20px;
+                        margin-bottom: 15px;
+                    }
+                }
+                a:hover {
+                    color: #51cbce;
+                    text-decoration: underline;
+                }
+                .description {
+                    color: #9d9d9d;
+                    margin-top: -10px;
+                    font-size: 1.14em;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+        .description {
+            color: #9d9d9d;
+            font-weight: 300;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            line-height: 2;
+        }
     }
+    .card-project {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Poppins", sans-serif;
+        height: 30vh;
+        background-color: rgb(255, 255, 255);
+        border-radius: 12px;
+        box-shadow: 1px 3px rgb(200, 199, 199);
+        margin-bottom: 2rem;
+        margin-top: 3rem;
+        flex: 1;
+        .card-project-header {
+            background-color: initial;
+            padding: 15px 15px 0;
+            border: 0;
+            margin-bottom: 0;
+            text-align: left;
+            .card-title {
+                margin-top: 10px;
+                margin-bottom: 0.75rem;
+                font-size: 1.714em;
+                line-height: 1.45em;
+                font-weight: 400;
+            }
+        }
+    }
+    // .card-list {
+    //     margin: 0;
+    //     padding: 0;
+    //     box-sizing: border-box;
+    //     font-family: "Poppins", sans-serif;
+    //     li {
+    //         margin-left: 20px;
+    //         a {
+    //             line-height: 2;
+    //             margin: auto;
+    //             color: rgb(36, 35, 35);
+    //             font-size: 15px;
+    //             padding: 5px 0;
+    //             white-space: nowrap;
+    //             opacity: 0.6;
+    //             transition: all 0.3s ease;
+    //             width: 100%;
+    //             display: flex;
+
+    //             &:hover {
+    //                 opacity: 1;
+    //             }
+
+    //             span {
+    //                 width: 50%;
+    //                 overflow: hidden;
+    //                 text-overflow: ellipsis;
+    //                 text-align: initial;
+    //             }
+    //         }
+
+    //         i {
+    //             min-width: 60px;
+    //             text-align: center;
+    //             color: rgb(14, 13, 13);
+    //             font-size: 20px;
+    //             transition: all 0.3s ease;
+    //             margin: auto 0;
+    //         }
+    //     }
+    // }
 }
 .card-info {
     background-color: rgb(255, 255, 255);
@@ -38,6 +178,8 @@
     width: 50%;
     padding: 15px;
     margin-bottom: 2rem;
+
+    box-shadow: 1px 3px rgb(200, 199, 199);
 
     @media (max-width: 1024px) {
         width: 100%;
