@@ -80,24 +80,27 @@ const AddBoardModal = ({ setShowAddBoardModal, addBoard, project }) => {
             ) : null}
             <div className="addboard-modal">
                 <form className="addboard-modal__left" onSubmit={onSubmit}>
-                    <div
-                        className="addboard-modal__title-block"
-                        style={getAddBoardStyle(...options[selectedBackground])}
+                    <input
+                        value={title}
+                        onChange={(e) => {
+                            setTitle(e.target.value);
+                        }}
+                        className="addboard-modal__title"
+                        placeholder="Add board title"
                     >
-                        <input
-                            value={title}
-                            onChange={(e) => {
-                                setTitle(e.target.value);
-                            }}
-                            className="addboard-modal__title"
-                            placeholder="Add board title"
-                        />
-                        <button
-                            className="addboard-modal__exit"
-                            onClick={() => setShowAddBoardModal(false)}
-                        >
-                            <i className="fal fa-times"></i>
-                        </button>
+                    </input>
+
+                    <button
+                        className="addboard-modal__exit"
+                        onClick={() => setShowAddBoardModal(false)}
+                    >
+                        <i className="fal fa-times"></i>
+                    </button>
+                    <div className="addboard-modal__title-block"
+                        style={getAddBoardStyle(...options[selectedBackground])}>
+
+                        <div className="addboard-madal_fake"></div>
+
                     </div>
                     {title.trim() === "" ? (
                         <button
@@ -122,9 +125,8 @@ const AddBoardModal = ({ setShowAddBoardModal, addBoard, project }) => {
                             onClick={() => {
                                 setSelectedBackground(index);
                             }}
-                            className={`addboard-modal__color-box${
-                                option[1] ? " color-box--img" : ""
-                            }`}
+                            className={`addboard-modal__color-box${option[1] ? " color-box--img" : ""
+                                }`}
                             style={getAddBoardStyle(...option)}
                             key={uuidv4()}
                         >

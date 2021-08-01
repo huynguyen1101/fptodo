@@ -12,10 +12,15 @@ import { filterBoards } from "../static/js/board";
 
 const Home = () => {
     useDocumentTitle("Boards | FPTODO");
-    const [showAddBoardModal, setShowAddBoardModal] = useState(true);
+    const [showAddBoardModal, setShowAddBoardModal] = useState(false);
     const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
     const [showTeamModal, setShowTeamModal] = useState(false);
+<<<<<<< HEAD
+    const { data: projects, addItem: addProject } = useAxiosGet("/projects/");
+    console.log(projects);
+=======
     let { data: projects, addItem: addProject } =  useAxiosGet("/projects/");
+>>>>>>> 9845067fde482b5b900d5b8ceb9f2b51099bde06
     const {
         data: boards,
         addItem: addBoard,
@@ -33,19 +38,35 @@ const Home = () => {
     const boardExist = [];
     const checkExistBoard = projects.map((itemBoard) => {
         const result = projectBoards.find((board) => {
-            if(board.id === itemBoard.id){
+            if (board.id === itemBoard.id) {
                 return true
             }
         });
-    console.log(result)
-        if(result){
+        console.log(result)
+        if (result) {
             return
-        } else{
+        } else {
             boardExist.push(itemBoard)
         }
-        
+
     })
     console.log(boardExist)
+
+    // const [show, setShow] = useState(false);
+    // const [showBoar, setShowBoard] = useState(false);
+    // const handleClickBoard = () => {
+    //     setShowBoard(!showBoar);
+    // }
+
+    // if (showBoar) {
+    //     dropboardclass = "out-of-focus";
+
+    //     if (!show) {
+    //         subMenuStyle = {
+    //             height: 50 * projects.length + "px",
+    //         }
+    //     }
+    // }
 
     return (
         <>
@@ -100,6 +121,7 @@ const Home = () => {
                         <p className="home__title">
                             <i className="fal fa-user"></i> Personal Boards
                         </p>
+                        {/* onClick={handleClickBoard} */}
                         <button
                             className="btn"
                             onClick={() => {
@@ -119,7 +141,7 @@ const Home = () => {
                             />
                         ))}
                     </div>
-                    { projectBoards.length > 0  && projectBoards.map((project) => (
+                    {projectBoards.length > 0 && projectBoards.map((project) => (
                         <React.Fragment key={uuidv4()}>
                             <div className="home__section">
                                 <p className="home__title">
@@ -168,7 +190,7 @@ const Home = () => {
                             </div>
                         </React.Fragment>
                     ))}
-                    {  boardExist.map((project) => (
+                    {boardExist.map((project) => (
                         <React.Fragment key={uuidv4()}>
                             <div className="home__section">
                                 <p className="home__title">
@@ -205,7 +227,7 @@ const Home = () => {
                                     </a>
                                 </div>
                             </div>
-                            
+
                         </React.Fragment>
                     ))}
                 </div>
