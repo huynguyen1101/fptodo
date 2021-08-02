@@ -1,8 +1,6 @@
-
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import avatar from "../static/img/avatar.png";
 import bg4 from "../static/img/bg4.jpg";
 import lisa from "../static/img/lisa.jpg"
 import AddBoardModal from "../components/modals/AddBoardModal";
@@ -19,10 +17,6 @@ import a from "../static/img/404.jpg";
 
 
 const User = (props) => {
-
-
-
-
   useDocumentTitle("Boards | FPTODO");
   const [showAddBoardModal, setShowAddBoardModal] = useState(false);
   const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
@@ -68,7 +62,6 @@ const User = (props) => {
           <div className="card-wrapper">
             <div className="card-account">
               {/* <div className="author">
-
                 <img src={a} className="center"></img>
                 <h2 style={{ color: "blue", paddingTop: "100px", fontFamily: "cursive", fontSize: "2em" }}>
                   UserName

@@ -1,311 +1,243 @@
 
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
+import avatar from "../static/img/avatar.png";
+import bg4 from "../static/img/bg4.jpg";
+import lisa from "../static/img/lisa.jpg"
+import AddBoardModal from "../components/modals/AddBoardModal";
+import HomeSidebar from "../components/sidebars/HomeSidebar";
+import HomeBoard from "../components/boards/HomeBoard";
+import CreateTeamModal from "../components/modals/CreateTeamModal";
+import useAxiosGet from "../hooks/useAxiosGet";
+import useDocumentTitle from "../hooks/useDocumentTitle";
+import { filterBoards } from "../static/js/board";
+import "../static/css/components/_user.scss";
 
-// reactstrap components
-import {
-  Button,
-  Card,
-  CardHeader,
-  CardBody,
-  CardFooter,
-  CardTitle,
-  FormGroup,
-  Form,
-  Input,
-  Row,
-  Col,
-} from "reactstrap";
 
-function User() {
+import a from "../static/img/404.jpg";
+// import 'bootstrap/dist/css/bootstrap.css';
+
+
+const User = (props) => {
+
+
+
+
+  useDocumentTitle("Boards | FPTODO");
+  const [showAddBoardModal, setShowAddBoardModal] = useState(false);
+  const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
+  const [showTeamModal, setShowTeamModal] = useState(false);
+  const { data: projects, addItem: addProject } = useAxiosGet("/projects/");
+  console.log(projects);
+  const {
+    data: boards,
+    addItem: addBoard,
+    replaceItem: replaceBoard,
+  } = useAxiosGet("/boards/");// replaceBoard when you star or unstar
+  const { data: recentlyViewedBoards } = useAxiosGet("/boards/?sort=recent");
+  const [userBoards, projectBoards, starredBoards] = filterBoards(boards);
+  const resultFilter = filterBoards(boards);
+
+  console.log([userBoards, projectBoards, starredBoards])
+  if (!boards) return null;
+  const boardExist = [];
+  const checkExistBoard = projects.map((itemBoard) => {
+    const result = projectBoards.find((board) => {
+      if (board.id === itemBoard.id) {
+        return true
+      }
+    });
+    console.log(result)
+    if (result) {
+      return
+    } else {
+      boardExist.push(itemBoard)
+    }
+
+  })
+  console.log(boardExist)
+
+
   return (
+
     <>
-      <div className="content">
-        <Row>
-          <Col md="4">
-            <Card className="card-user">
-              <div className="image">
-                <img
-                  alt="..."
-                  src={require("assets/img/damir-bosnjak.jpg").default}
-                />
+      <div className="home-wrapper">
+        <HomeSidebar
+          setShowTeamModal={setShowTeamModal}
+          projects={projects || []}
+        />
+        <div className="home">
+          <div className="card-wrapper">
+            <div className="card-account">
+              {/* <div className="author">
+
+                <img src={a} className="center"></img>
+                <h2 style={{ color: "blue", paddingTop: "100px", fontFamily: "cursive", fontSize: "2em" }}>
+                  UserName
+                </h2>
+                <h4 style={{ paddingTop: "10px", opacity: "0.5" }}>@User</h4>
               </div>
-              <CardBody>
-                <div className="author">
-                  <a href="#pablo" onClick={(e) => e.preventDefault()}>
-                    <img
-                      alt="..."
-                      className="avatar border-gray"
-                      src={require("assets/img/avatar.jpg").default}
-                    />
-                    <h5 className="title">Thao Mai</h5>
-                  </a>
-                  <p className="description">@Thaomai</p>
-                </div>
-                <p className="description text-center">
+              <div className="author-description">
+                <p style={{ paddingTop: "20px", opacity: "0.5" }}>
                   "Cuộc sống mà  <br />
                   Never giver up <br />Never giver up"
                 </p>
-              </CardBody>
-              <CardFooter>
-                <hr />
-                <div className="button-container">
-                  <Row>
-                    <Col className="ml-auto" lg="3" md="6" xs="6">
-                      <h5>
-                        50k <br />
-                        <small>Likes</small>
-                      </h5>
-                    </Col>
-                    <Col className="ml-auto mr-auto" lg="4" md="6" xs="6">
-                      <h5>
-                        20k <br />
-                        <small>Tym</small>
-                      </h5>
-                    </Col>
-                    <Col className="mr-auto" lg="3">
-                      <h5>
-                        15k <br />
-                        <small>Share</small>
-                      </h5>
-                    </Col>
-                  </Row>
+                <p style={{ paddingTop: "20px", opacity: "0.5" }}>-------------------------</p>
+              </div> */}
+
+              <div className="card-user">
+                <div className="image">
+                  <img className="bg4-user" src={bg4} />
                 </div>
-              </CardFooter>
-            </Card>
-            {/* <Card>
-              <CardHeader>
-                <CardTitle tag="h4">Team Members</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <ul className="list-unstyled team-members">
-                  <li>
-                    <Row>
-                      <Col md="2" xs="2">
-                        <div className="avatar">
-                          <img
-                            alt="..."
-                            className="img-circle img-no-padding img-responsive"
-                            src={
-                              require("assets/img/faces/ayo-ogunseinde-2.jpg")
-                                .default
-                            }
-                          />
-                        </div>
-                      </Col>
-                      <Col md="7" xs="7">
-                        DJ Khaled <br />
-                        <span className="text-muted">
-                          <small>Offline</small>
-                        </span>
-                      </Col>
-                      <Col className="text-right" md="3" xs="3">
-                        <Button
-                          className="btn-round btn-icon"
-                          color="success"
-                          outline
-                          size="sm"
+                <div className="card-body">
+                  <div className="author">
+                    <a href="#">
+
+
+
+
+
+                      <img className="avatar-user" src={lisa} />
+                      <h5 className="title">Chet Faker</h5>
+
+                    </a>
+                    <p className="description">@chetfaker</p>
+                  </div>
+                  <p className="description text-center">
+                    ""I like the way you work it "
+                    <br></br>
+                    "No diggity"
+                    <br></br>
+                    "I wanna bag it up""
+                  </p>
+                </div>
+              </div>
+              {/* <div className="card-project">
+                <div className="card-project-header">
+                  <h5 className="card-title">List Project</h5>
+                </div>
+                <div className="card-list">
+                  <ul>
+                    <li>
+                      {projects.map((project) => (
+                        <Link
+                          to={`/p/${project.id}`}
+                          className="btn btn--transparent btn--small"
+                          key={uuidv4()}
                         >
-                          <i className="fa fa-envelope" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </li>
-                  <li>
-                    <Row>
-                      <Col md="2" xs="2">
-                        <div className="avatar">
-                          <img
-                            alt="..."
-                            className="img-circle img-no-padding img-responsive"
-                            src={
-                              require("assets/img/faces/joe-gardner-2.jpg")
-                                .default
-                            }
-                          />
-                        </div>
-                      </Col>
-                      <Col md="7" xs="7">
-                        Creative Tim <br />
-                        <span className="text-success">
-                          <small>Available</small>
-                        </span>
-                      </Col>
-                      <Col className="text-right" md="3" xs="3">
-                        <Button
-                          className="btn-round btn-icon"
-                          color="success"
-                          outline
-                          size="sm"
-                        >
-                          <i className="fa fa-envelope" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </li>
-                  <li>
-                    <Row>
-                      <Col md="2" xs="2">
-                        <div className="avatar">
-                          <img
-                            alt="..."
-                            className="img-circle img-no-padding img-responsive"
-                            src={
-                              require("assets/img/faces/clem-onojeghuo-2.jpg")
-                                .default
-                            }
-                          />
-                        </div>
-                      </Col>
-                      <Col className="col-ms-7" xs="7">
-                        Flume <br />
-                        <span className="text-danger">
-                          <small>Busy</small>
-                        </span>
-                      </Col>
-                      <Col className="text-right" md="3" xs="3">
-                        <Button
-                          className="btn-round btn-icon"
-                          color="success"
-                          outline
-                          size="sm"
-                        >
-                          <i className="fa fa-envelope" />
-                        </Button>
-                      </Col>
-                    </Row>
-                  </li>
-                </ul>
-              </CardBody>
-            </Card> */}
-          </Col>
-          <Col md="8">
-            <Card className="card-user">
-              <CardHeader>
-                <CardTitle tag="h5">Edit Profile</CardTitle>
-              </CardHeader>
-              <CardBody>
-                <Form>
-                  <Row>
-                    <Col className="pr-1" md="5">
-                      <FormGroup>
-                        <label>Company (disabled)</label>
-                        <Input
-                          defaultValue="FPTODO"
-                          disabled
-                          placeholder="Company"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="px-1" md="3">
-                      <FormGroup>
-                        <label>Username</label>
-                        <Input
-                          defaultValue="Laughing"
-                          placeholder="Username"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <FormGroup>
-                        <label htmlFor="exampleInputEmail1">
-                          Email address
-                        </label>
-                        <Input placeholder="thaonguyenngoc999@gmail.com" type="email" />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col className="pr-1" md="6">
-                      <FormGroup>
-                        <label>First Name</label>
-                        <Input
-                          defaultValue="Nguyen"
-                          placeholder="Company"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-1" md="6">
-                      <FormGroup>
-                        <label>Last Name</label>
-                        <Input
-                          defaultValue="Thao"
-                          placeholder="Last Name"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col md="12">
-                      <FormGroup>
-                        <label>Address</label>
-                        <Input
-                          defaultValue="Thang Binh , Quang Nam, Vietnam"
-                          placeholder="Home Address"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  {/* <Row>
-                    <Col className="pr-1" md="4">
-                      <FormGroup>
-                        <label>City</label>
-                        <Input
-                          defaultValue="Melbourne"
-                          placeholder="City"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="px-1" md="4">
-                      <FormGroup>
-                        <label>Country</label>
-                        <Input
-                          defaultValue="Australia"
-                          placeholder="Country"
-                          type="text"
-                        />
-                      </FormGroup>
-                    </Col>
-                    <Col className="pl-1" md="4">
-                      <FormGroup>
-                        <label>Postal Code</label>
-                        <Input placeholder="ZIP Code" type="number" />
-                      </FormGroup>
-                    </Col>
-                  </Row> */}
-                  <Row>
-                    <Col md="12">
-                      <FormGroup>
-                        <label>About Me</label>
-                        <Input
-                          type="textarea"
-                          defaultValue="I'm drunk 1 2 3 4 5 glasses, not as bitter as the tears on my eyes. I just said I miss you because I was drunk, I miss you crazy"
-                        />
-                      </FormGroup>
-                    </Col>
-                  </Row>
-                  <Row>
-                    <div className="update ml-auto mr-auto">
-                      <Button
-                        className="btn-round"
-                        color="primary"
-                        type="submit"
-                      >
-                        Update Profile
-                      </Button>
+                          <span><i className="fal fa-users"></i> {project.title}</span>
+                        </Link>
+                      ))}
+                    </li>
+                  </ul>
+                </div>
+              </div> */}
+
+            </div>
+
+
+
+
+
+
+
+
+            <div className="card-info">
+              <div className="card-title">Edit Profile</div>
+              <div className="card-body">
+                <form>
+                  <div className="row">
+                    <div className="col-lg-6 col-12">
+                      <div className="form-group">
+                        <label>Company</label>
+                        <input disabled placeholder="Company" type="text" className="form-control" value="FPT" />
+                      </div>
                     </div>
-                  </Row>
-                </Form>
-              </CardBody>
-            </Card>
-          </Col>
-        </Row>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-4 col-12">
+                      <div className="form-group">
+                        <label>Username</label>
+                        <input placeholder="Username" type="text" className="form-control" value="trungkien123" />
+                      </div>
+                    </div>
+                    <div className="col-lg-8 col-12">
+                      <div className="form-group">
+                        <label>Email address</label>
+                        <input placeholder="Email " type="email" className="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-6 col-12">
+                      <div className="form-group">
+                        <label>First Name</label>
+                        <input placeholder="Firstname" type="text" className="form-control" value="Kien" />
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <div className="form-group">
+                        <label>Last Name</label>
+                        <input placeholder="Lastname" type="text" className="form-control" value="Le" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="form-group">
+                        <label>Address</label>
+                        <input placeholder="Address" type="text" className="form-control" value="001,DaNang, VietNam" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-lg-6 col-12">
+                      <div className="form-group">
+                        <label>City</label>
+                        <input placeholder="City" type="text" className="form-control" value="DaNang" />
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-12">
+                      <div className="form-group">
+                        <label>Country</label>
+                        <input placeholder="Country" type="text" className="form-control" value="VietNam" />
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="about">
+                      <div className="form-group">
+                        <label>About me</label>
+                        <textarea className="form-control">oh no</textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="row">
+                    <div className="col-6 btn-wrapper">
+                      <button type="submit" className="btn-update">Update profile</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
+      {showTeamModal && (
+        <CreateTeamModal
+          setShowModal={setShowTeamModal}
+          addProject={addProject}
+        />
+      )}
+      {/* {showAddBoardModal && (
+        <AddBoardModal
+          setShowAddBoardModal={setShowAddBoardModal}
+          addBoard={addBoard}
+          project={boardProject}
+        />
+      )} */}
+
     </>
   );
 }
