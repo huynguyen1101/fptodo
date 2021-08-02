@@ -30,3 +30,10 @@ Click If Element Is Visible
 
     Wait Until Element Is Visible    ${locator}    ${timeout}
     Click Element    ${locator}
+
+Get CSS Property Value
+    [Arguments]    ${locator}    ${attribute name}
+
+    ${css}=    Get WebElement    ${locator}
+    ${prop_val}=    Call Method    ${css}    value_of_css_property    ${attribute name}
+    [Return]     ${prop_val}
