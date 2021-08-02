@@ -2,6 +2,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
+import avatar from "../static/img/avatar.png";
+import bg4 from "../static/img/bg4.jpg";
+import lisa from "../static/img/lisa.jpg"
 import AddBoardModal from "../components/modals/AddBoardModal";
 import HomeSidebar from "../components/sidebars/HomeSidebar";
 import HomeBoard from "../components/boards/HomeBoard";
@@ -15,9 +18,13 @@ import a from "../static/img/404.jpg";
 // import 'bootstrap/dist/css/bootstrap.css';
 
 
-const User = () => {
+const User = (props) => {
+
+
+
+
   useDocumentTitle("Boards | FPTODO");
-  const [showAddBoardModal, setShowAddBoardModal] = useState(true);
+  const [showAddBoardModal, setShowAddBoardModal] = useState(false);
   const [boardProject, setBoardProject] = useState(0); // If 0, we are making a personal board. Else, making board for project with given ID
   const [showTeamModal, setShowTeamModal] = useState(false);
   const { data: projects, addItem: addProject } = useAxiosGet("/projects/");
@@ -29,7 +36,7 @@ const User = () => {
   } = useAxiosGet("/boards/"); // replaceBoard when you star or unstar
   const { data: recentlyViewedBoards } = useAxiosGet("/boards/?sort=recent");
   const [userBoards, projectBoards, starredBoards] = filterBoards(boards);
-  //const resultFilter = filterBoards(boards);
+  const resultFilter = filterBoards(boards);
 
   console.log([userBoards, projectBoards, starredBoards])
   if (!boards) return null;
@@ -60,7 +67,7 @@ const User = () => {
         <div className="home">
           <div className="card-wrapper">
             <div className="card-account">
-              <div className="author">
+              {/* <div className="author">
 
                 <img src={a} className="center"></img>
                 <h2 style={{ color: "blue", paddingTop: "100px", fontFamily: "cursive", fontSize: "2em" }}>
@@ -74,11 +81,52 @@ const User = () => {
                   Never giver up <br />Never giver up"
                 </p>
                 <p style={{ paddingTop: "20px", opacity: "0.5" }}>-------------------------</p>
+              </div> */}
+
+              <div className="card-user">
+                <div className="image">
+                  <img className="bg4-user" src={bg4} />
+                </div>
+                <div className="card-body">
+                  <div className="author">
+                    <a href="#">
+                      <img className="avatar-user" src={lisa} />
+                      <h5 className="title">Chet Faker</h5>
+                    </a>
+                    <p className="description">@chetfaker</p>
+                  </div>
+                  <p className="description text-center">
+                    ""I like the way you work it "
+                    <br></br>
+                    "No diggity"
+                    <br></br>
+                    "I wanna bag it up""
+                  </p>
+                </div>
               </div>
-
-
+              {/* <div className="card-project">
+                <div className="card-project-header">
+                  <h5 className="card-title">List Project</h5>
+                </div>
+                <div className="card-list">
+                  <ul>
+                    <li>
+                      {projects.map((project) => (
+                        <Link
+                          to={`/p/${project.id}`}
+                          className="btn btn--transparent btn--small"
+                          key={uuidv4()}
+                        >
+                          <span><i className="fal fa-users"></i> {project.title}</span>
+                        </Link>
+                      ))}
+                    </li>
+                  </ul>
+                </div>
+              </div> */}
 
             </div>
+
 
 
 

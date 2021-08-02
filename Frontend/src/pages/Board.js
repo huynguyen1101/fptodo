@@ -14,9 +14,8 @@ import globalContext from "../context/globalContext";
 const getBoardStyle = (board) => {
     if (board.image || board.image_url)
         return {
-            backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) ), url(${
-                board.image || board.image_url
-            })`,
+            backgroundImage: `linear-gradient( rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25) ), url(${board.image || board.image_url
+                })`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
             backgroundPosition: "center center",
@@ -29,6 +28,7 @@ const getBoardStyle = (board) => {
 
 const Board = (props) => {
     const { id } = props.match.params;
+    console.log("---------: ", id)
     const [addingList, setAddingList] = useState(false);
     const { data: board, setData: setBoard, loading } = useAxiosGet(
         `/boards/${id}/`

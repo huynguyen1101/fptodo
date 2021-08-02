@@ -16,7 +16,7 @@ import useBlurSetState from "../../hooks/useBlurSetState";
 import { handleBackgroundBrightness } from "../../static/js/util";
 import globalContext from "../../context/globalContext";
 import NotificationsModal from "../modals/NotificationsModal";
-import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams } from "react-router-dom";
 
 
 
@@ -60,7 +60,7 @@ const Header = (props) => {
     return (
         <>
             <header
-                className={`header${isBackgroundDark && onBoardPage
+                className={`header${onBoardPage
                     ? " header--transparent"
                     : ""
                     }`}
@@ -69,10 +69,10 @@ const Header = (props) => {
                     <ul className="header__list">
                         <li className="header__li">
 
-                            {/* <a>
+                            <a>
 
                                 <img src={logo1} width="13px" height="12px"></img> Boards
-                            </a> */}
+                            </a>
                         </li>
                         <li
                             className={`header__li header__li--search${searchQuery !== "" ? " header__li--active" : ""
@@ -141,6 +141,7 @@ const Header = (props) => {
                     </ul>
                 </div>
                 <div className="out-of-focus"></div>
+                {/* <div className={dropboardclass}></div> */}
             </header>
             {showSearch && (
                 <SearchModal
