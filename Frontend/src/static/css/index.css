@@ -1867,8 +1867,13 @@ input::placeholder {
   color: #838282;
 }
 
+.label-modal__header i {
+  right: 25px;
+  position: absolute;
+}
+
 .label-modal__header p {
-  margin-left: auto;
+  text-align: center;
 }
 
 .label-modal__header button {
