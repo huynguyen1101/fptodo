@@ -2,7 +2,8 @@
 <projectConfiguration>
     <configVersion>2</configVersion>
     <relativeTo>WORKSPACE</relativeTo>
-    <referencedLibrary type="PYTHON" name="ExtendedSeleniumLibrary" path="fptodo/e2e-test/lib/ExtendedSeleniumLibrary.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="Selenium2Library" path="C:/Users/tavv/AppData/Local/Programs/Python/Python39/Lib/site-packages/Selenium2Library/__init__.py" dynamic="false"/>
+    <referencedLibrary type="PYTHON" name="FakerLibrary" path="C:/Users/tavv/AppData/Local/Programs/Python/Python39/Lib/site-packages/FakerLibrary/__init__.py" dynamic="false"/>
     <pythonpath/>
     <classpath/>
     <excludedForValidation/>
