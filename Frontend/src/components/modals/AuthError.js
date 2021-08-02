@@ -12,7 +12,7 @@ const AuthError = ({ signup, msgs, position, setErrMsgs}) => {
   return (
     <div className="label-modal" style = {position}>
       <div className="label-modal__header label-modal__header--noborder">
-        { signup?  <p>Error Signing up</p> : <p> Error Logging in </p>
+        { signup?  <p>Signing up</p> : <p>Login</p>
         }
         <i className="fal fa-times" onClick={() => setErrMsgs({msgs: msgs, err: false})}></i>
       </div>

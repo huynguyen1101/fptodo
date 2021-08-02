@@ -21,3 +21,12 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+.project
+e2e-test/.pydevproject
+e2e-test/lib/__pycache__
+e2e-test/libspecs
+e2e-test/logs
+libspecs
+logs
+/backend/*.sqlite3
