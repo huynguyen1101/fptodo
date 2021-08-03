@@ -5,11 +5,11 @@ from .models import User
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('username', 'email', 'first_name', 'last_name', 'full_name', 'profile_pic', 'password')
-        read_only_fields = ('full_name',)
+        fields = ('username', 'email', 'first_name', 'last_name', 'full_name', 'profile_pic', 'password', 'city', 'country', 'about_me')
+        read_only_fields = ('first_name', 'last_name','full_name',)
         extra_kwargs = {'password': {'write_only': True}, 
-                        'first_name': {'write_only': True},
-                        'last_name': {'write_only': True}}
+                        'first_name': {'write_only': False},
+                        'last_name': {'write_only': False}}
 
     def create(self, validated_data):
         user = User.objects.create(

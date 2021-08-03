@@ -14,7 +14,7 @@ class BoardsInline(admin.TabularInline):
 class UserAdmin(DjangoUserAdmin):
     fieldsets = (
         (('Basic Info'), {'fields': ('username', 'email', 'first_name',
-                                     'last_name', 'profile_pic', 'password')}),
+                                     'last_name', 'profile_pic', 'password', 'city', 'country', 'about_me')}),
         (('Permissions'), {'fields': ('is_active', 'is_staff', 'is_superuser',
                                       'groups', 'user_permissions')}),
         (('Important dates'), {'fields': ('last_login', 'date_joined')}),
