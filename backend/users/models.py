@@ -44,7 +44,10 @@ class User(AbstractUser):
         max_length=255, blank=False, null=False, unique=True)
     first_name = models.CharField(max_length=255, blank=False, null=False)
     last_name = models.CharField(max_length=255, blank=False, null=False)
-    profile_pic = models.ImageField(blank=True, upload_to='profile_pics')
+    profile_pic = models.ImageField(blank=True, null=True)
+    city = models.CharField(max_length=255, blank=True, null=True)
+    country = models.CharField(max_length=255, blank=True, null=True)
+    about_me = models.CharField(max_length=255, blank=True, null=True)
 
     boards = GenericRelation(
         'boards.Board', object_id_field='owner_id', content_type_field='owner_model')
