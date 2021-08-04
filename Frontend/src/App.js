@@ -11,14 +11,12 @@ import Home from "./pages/Home";
 import Board from "./pages/Board";
 import Project from "./pages/Project";
 import Error404 from "./pages/Error404";
-import logOut from "./components/headers/Header";
 
 import User from "./pages/User";
 
 
 function App() {
     const { checkAuth, checkedAuth, authUser } = useContext(globalContext);
-
     useEffect(() => {
         checkAuth();
     }, []);
@@ -33,7 +31,10 @@ function App() {
                 <Route path="/" component={Header} />
                 <Switch>
                     <Route exact path="/" component={Home} />
-                    <Route path="/user/" component={User} />
+                    <Route exact path="/profile/:id" render={() => (
+                        <User user={authUser} />
+                    )} />
+                    {/* <Route path="/profile/" component={User} /> */}
                     <Route exact path="/b/:id" component={Board} />
                     <Route exact path="/test" component={AddBoardModal} />
                     <Route exact path="/p/:id" component={Project} />

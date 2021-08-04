@@ -10,11 +10,11 @@ const DraggableCard = ({ card, list, index }) => {
                     typeof provided.draggableProps.onTransitionEnd ===
                     "function"
                 ) {
-                    const anim = window?.requestAnimationFrame(() =>
-                        provided.draggableProps.onTransitionEnd({
-                            propertyName: "transform",
-                        })
-                    );
+                    // const anim = window?.requestAnimationFrame(() =>
+                    //     provided.draggableProps.onTransitionEnd({
+                    //         propertyName: "transform",
+                    //     })
+                    // );
                 }
                 return (
                     <Card

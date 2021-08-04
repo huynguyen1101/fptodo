@@ -25,7 +25,6 @@ const Home = () => {
     const [userBoards, projectBoards, starredBoards] = filterBoards(boards);
     //const resultFilter = filterBoards(boards);
 
-    console.log([userBoards, projectBoards, starredBoards])
     if (!boards) return null;
     if (!projects) {
         projects = [];
@@ -37,7 +36,6 @@ const Home = () => {
                 return true
             }
         });
-        console.log(result)
         if (result) {
             return
         } else {
@@ -45,7 +43,7 @@ const Home = () => {
         }
 
     })
-    console.log(boardExist)
+
 
     // const [show, setShow] = useState(false);
     // const [showBoar, setShowBoard] = useState(false);

@@ -23,7 +23,6 @@ const GlobalProvider = (props) => {
     const login = async (resData) => {
         localStorage.setItem("accessToken", resData.access);
         var accessTokenObj = JSON.parse(localStorage.getItem("Token:"));
-        console.log(accessTokenObj);
         localStorage.setItem("refreshToken", resData.refresh);
         const url = backendUrl + "/me/";
 

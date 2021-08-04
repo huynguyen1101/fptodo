@@ -7,7 +7,7 @@ import { authAxios, getAddBoardStyle } from "../../static/js/util";
 import { updateCard } from "../../static/js/board";
 import globalContext from "../../context/globalContext";
 
-const zipWith3 = (xs, ys, zs, f) => xs.map((n, i) => f(n, ys[i], zs[i]));
+// const zipWith3 = (xs, ys, zs, f) => xs.map((n, i) => f(n, ys[i], zs[i]));
 
 const getLiContent = (data, selected) => {
     if (!data) return [];

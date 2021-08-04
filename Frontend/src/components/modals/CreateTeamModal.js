@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 
 const CreateTeamModal = ({ setShowModal, addProject }) => {
     useEffect(modalBlurHandler(setShowModal), []);
-    const { register, handleSubmit, errors, watch } = useForm();
+    const { register, handleSubmit, watch } = useForm();
     const titleValue = watch("title", "");
 
     const animateFaces = () => {

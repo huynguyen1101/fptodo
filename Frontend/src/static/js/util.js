@@ -106,18 +106,18 @@ export const mergeRefs = (...refs) => {
 
 const getImageBrightness = (imageSrc, callback) => {
     var img = document.createElement("img"),
-        colorSum = 0,
-        i = 0,
-        len,
-        canvas,
-        ctx,
-        imageData,
-        data,
-        brightness,
-        r,
-        g,
-        b,
-        avg;
+        colorSum = 0;
+    // i = 0,
+    // len,
+    // canvas,
+    // ctx,
+    // imageData,
+    // data,
+    // brightness,
+    // r,
+    // g,
+    // b,
+    // avg;
 
     img.crossOrigin = "anonymous";
     img.src = imageSrc;

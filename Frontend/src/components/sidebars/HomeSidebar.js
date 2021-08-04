@@ -1,13 +1,31 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import { useState } from "react";
 import "../../static/css/components/_sidebar-menu.scss";
+import globalContext from "../../context/globalContext";
+
+// const fakeApi = () => new Promise(resolve => setTimeout(() => {
+//     resolve({
+//         id: 1,
+//         userName: "Hallo"
+//     })
+// }, 200))
 
 const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }) => {
+    const { authUser } = useContext(globalContext);
+
     const [show, setShow] = useState(false);
+    // const [user, setUser] = useState({});
     const [showDrop, setShowDrop] = useState(false);
-    console.log(sidebarclass)
+
+    // useEffect(() => {
+    //     const asyncFunc = async () => {
+    //         const result = await fakeApi()
+    //         setUser(result)
+    //     }
+    //     asyncFunc()
+    // }, [])
     const handleClick = () => {
         setShow(!show);
     }
@@ -24,6 +42,7 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
     let subMenuStyle = {
         height: `0px`,
     }
+
 
 
 
@@ -74,7 +93,7 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
                     </a>
                 </li>
                 <li >
-                    <a href="/user/">
+                    <a href={`/profile/${authUser?.id}`}>
                         <i className="fas fa-user"></i>
                         <span className="link_name">User</span>
                     </a>

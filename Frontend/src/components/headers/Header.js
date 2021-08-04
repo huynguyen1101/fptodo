@@ -22,14 +22,14 @@ import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams } f
 
 const Header = (props) => {
 
-    let user = JSON.parse(localStorage.getItem('user-info'))
+    // let user = JSON.parse(localStorage.getItem('user-info'))
     const history = useHistory();
     function logOut() {
         localStorage.clear();
         history.push('/login')
     }
-    const BrowserRouter = require("react-router-dom").BrowserRouter;
-    const Route = require("react-router-dom").Route;
+    // const BrowserRouter = require("react-router-dom").BrowserRouter;
+    // const Route = require("react-router-dom").Route;
     const Link = require("react-router-dom").Link;
     const { authUser, board } = useContext(globalContext);
 
@@ -108,7 +108,7 @@ const Header = (props) => {
                                 <i className="fal fa-bell"></i>
                             </button>
                             {(notifications || []).find(
-                                (notification) => notification.unread == true
+                                (notification) => notification.unread === true
                             ) && <div className="header__unread"></div>}
                         </li>
 
