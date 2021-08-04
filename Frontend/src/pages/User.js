@@ -107,7 +107,7 @@ const User = (props) => {
                     <a href="#">
                       <ProfilePic className="avatar" user={authUser} large={true} />
                       {/* <img className="avatar-user" src={lisa} /> */}
-                      <h5 className="title">{user.full_name}</h5>
+                      <h5 className="title">{user.first_name + `_` + user.last_name}</h5>
                     </a>
                     <p className="username">{`@` + user.username}</p>
                   </div>
@@ -141,7 +141,7 @@ const User = (props) => {
                         name="full_name"
                         type="text"
                         className="form-control"
-                        value={user.full_name}
+                        value={user.first_name + `_` + user.last_name}
                         disabled
                       />
                     </div>
