@@ -142,6 +142,7 @@ class ListShow(generics.ListCreateAPIView):
 
     serializer_class = ListSerializer
     permission_classes = [CanViewBoard]
+    queryset = List.objects.all()
 
     def get_board(self, pk):
         board = get_object_or_404(Board, pk=pk)
@@ -149,20 +150,30 @@ class ListShow(generics.ListCreateAPIView):
         return board
 
     def get_queryset(self, *args, **kwargs):
-
+        queryset = self.queryset
         board_id = self.request.GET.get('board', None)
+        if board_id is not None:
+            board = self.get_board(board_id)
+            queryset = queryset.filter(board=board)
+        else:
+            project_ids = ProjectMembership.objects.filter(
+                member=self.request.user).values_list('project__id', flat=True)
+            board = Board.objects.filter(Q(owner_id=self.request.user.id, owner_model=ContentType.objects.get(model='user')) |
+                                         Q(owner_id__in=project_ids, owner_model=ContentType.objects.get(model='project')))
+        title = self.request.GET.get('title', None)
+        if title is not None:
+            queryset = queryset.filter(title__icontains=title, board__in=board)
 
-        board = self.get_board(board_id)
-        return List.objects.filter(board=board).order_by('order')
+        return queryset.order_by('id')
 
-    def get(self, request, *args, **kwargs):
+    # def get(self, request, *args, **kwargs):
 
-        board_id = self.request.GET.get('board', None)
+    #     board_id = self.request.GET.get('board', None)
 
-        if board_id is None:
-            return Response(status=status.HTTP_400_BAD_REQUEST)
+    #     if board_id is None:
+    #         return Response(status=status.HTTP_400_BAD_REQUEST)
 
-        return super().get(request, *args, **kwargs)
+    #     return super().get(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         if 'board' in request.data.keys():

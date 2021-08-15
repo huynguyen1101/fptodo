@@ -21,9 +21,8 @@ const HomeBoard = ({ board, replaceBoard }) => {
     return (
         <Link to={`/b/${board.id}`} className="board-preview">
             <button
-                className={`board-preview__star${
-                    board.is_starred ? " board-preview__star--starred" : ""
-                }`}
+                className={`board-preview__star${board.is_starred ? " board-preview__star--starred" : ""
+                    }`}
                 onClick={toggleFavorite}
             >
                 {!board.is_starred ? (
@@ -60,9 +59,8 @@ const Members = ({ members }) => {
                 <ProfilePic user={member} key={uuidv4()} />
             ))}
             {members.length > 3 && (
-                <p>{`+${members.length - 3} other${
-                    members.length - 3 === 1 ? "" : "s"
-                }`}</p>
+                <p>{`+${members.length - 3} other${members.length - 3 === 1 ? "" : "s"
+                    }`}</p>
             )}
         </div>
     );

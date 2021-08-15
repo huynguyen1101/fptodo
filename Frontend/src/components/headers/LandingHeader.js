@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from "react-router-dom";
 
-import logo from '../../static/img/logo.png';
+import logo from '../../static/img/logo1.png';
 
 const LandingHeader = () => {
 	return (

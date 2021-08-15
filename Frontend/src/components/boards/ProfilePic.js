@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 const hashName = (str) => {
     let res = 0;
@@ -15,23 +15,19 @@ const getNameColor = (name) => {
     return colors[hashName(name) % colors.length];
 };
 
-const ProfilePic = ({ user, large }) =>
-    user.profile_pic ? (
-        <div className={`member member--image${large ? " member--large" : ""}`}>
-            <img src={user.profile_pic} />
+const ProfilePic = (props) => {
+    return props?.user.profile_pic ? (
+        <div className={`member member--image${props?.large ? " member--large" : ""}`}>
+            <img src={props?.user.profile_pic} />
         </div>
     ) : (
         <div
-            className={`member member--${getNameColor(user.full_name)}${
-                large ? " member--large" : ""
-            }`}
+            className={`member member--${getNameColor(props?.user.full_name)}${props?.large ? " member--large" : ""
+                }`}
         >
-            {user.full_name.substring(0, 1)}
+            {props?.user.full_name.substring(0, 1)}
         </div>
     );
-
-ProfilePic.defaultProps = {
-    large: false,
-};
+}
 
 export default ProfilePic;

@@ -88,6 +88,10 @@ $sidebar-width: 250px;
         background-color: $primary-color;
         height: 50px;
         letter-spacing: 2px;
+        i.turn {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
 
         &:hover {
             cursor: pointer;

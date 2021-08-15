@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import LoginForm from "../components/auth/LoginForm";
 import RegisterForm from "../components/auth/RegisterForm";
 import AuthError from "../components/modals/AuthError";
-import logo from "../static/img/logologin.png";
+import logo from "../../src/static/img/logo1.png";
 import bg from "../static/img/bgr2.jpg";
 import useDocumentTitle from "../hooks/useDocumentTitle";
 

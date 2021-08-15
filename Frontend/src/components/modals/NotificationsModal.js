@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { backendUrl } from "../../static/js/const";
 import { authAxios, timeSince } from "../../static/js/util";
 import nonotif from "../../static/img/nonotif.svg";
+import a from "../../static/img/a.jpg";
 import ProfilePic from "../boards/ProfilePic";
 import Labels from "../boards/Labels";
 
@@ -28,8 +29,8 @@ const NotificationsModal = ({
     const notificationsToShow = showAll
         ? notifications || []
         : (notifications || []).filter(
-              (notification) => notification.unread === true
-          );
+            (notification) => notification.unread === true
+        );
 
     const markAllRead = async () => {
         await authAxios.post(`${backendUrl}/notifications/`);
@@ -66,7 +67,7 @@ const NotificationsModal = ({
                 ))}
                 {notificationsToShow.length === 0 && (
                     <div className="label-modal__no-notif">
-                        <img src={nonotif} />
+                        <img src={a} />
                         <p>No Notifications</p>
                     </div>
                 )}

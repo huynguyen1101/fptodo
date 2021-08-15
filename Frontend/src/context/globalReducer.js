@@ -1,6 +1,7 @@
 export const LOGIN = "LOGIN";
 export const LOGOUT = "LOGOUT";
 export const SET_BOARD_CONTEXT = "SET_BOARD_CONTEXT";
+export const UPDATE_PROFILE = "UPDATE_PROFILE";
 
 export const globalReducer = (state, action) => {
     action.user = {
@@ -22,6 +23,8 @@ export const globalReducer = (state, action) => {
             return { ...state, authUser: null, checkedAuth: true };
         case SET_BOARD_CONTEXT:
             return { ...state, board: action.board, setBoard: action.setBoard };
+        case UPDATE_PROFILE:
+            return { ...state, authUser: action.user };
         default:
             return state;
     }

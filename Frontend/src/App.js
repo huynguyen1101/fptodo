@@ -43,6 +43,7 @@ function App() {
 
                 </Switch>
 
+
             </>
 
         );
@@ -68,8 +69,10 @@ function App() {
                     />
                     <Route path="" component={Error404} />
                 </Switch>
+
             </>
         );
+
 }
 
 export default App;

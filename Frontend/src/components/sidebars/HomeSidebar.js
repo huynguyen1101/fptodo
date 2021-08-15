@@ -70,7 +70,7 @@ const HomeSidebar = ({ setShowTeamModal, projects, sidebarclass, dropdownclass }
                 <li>
 
                     <a href="#">
-                        <i className="fab fa-trello"></i>
+                        <i className="fab fa-trello turn"></i>
                         <span className="link_name">Board</span>
                     </a>
                 </li>

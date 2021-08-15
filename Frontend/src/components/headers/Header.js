@@ -6,7 +6,8 @@ import React, {
     useCallback,
 } from "react";
 import _ from "lodash";
-import logo from "../../static/img/logo.png";
+// import logo from "../../static/img/logo.png";
+import logo from "../../static/img/logo1.png";
 import logo1 from "../../static/img/Capture.PNG";
 import SearchModal from "../modals/SearchModal";
 import ProfilePic from "../boards/ProfilePic";
@@ -26,6 +27,7 @@ const Header = (props) => {
     const history = useHistory();
     function logOut() {
         localStorage.clear();
+        window.$access = null;
         history.push('/login')
     }
     // const BrowserRouter = require("react-router-dom").BrowserRouter;
@@ -57,9 +59,12 @@ const Header = (props) => {
     const [isBackgroundDark, setIsBackgroundDark] = useState(false);
     useEffect(handleBackgroundBrightness(board, setIsBackgroundDark), [board]);
 
+    window.$access = localStorage.getItem("accessToken");
+    console.log('------ ', window.$access)
+
     return (
         <>
-            <header
+            {window.$access ? (<header
                 className={`header${onBoardPage
                     ? " header--transparent"
                     : ""
@@ -71,7 +76,7 @@ const Header = (props) => {
 
                             <a>
 
-                                <img src={logo1} width="13px" height="12px"></img> Boards
+                                {/* <img src={logo1} width="13px" height="12px"></img> Boards */}
                             </a>
                         </li>
                         <li
@@ -142,7 +147,8 @@ const Header = (props) => {
                 </div>
                 <div className="out-of-focus"></div>
                 {/* <div className={dropboardclass}></div> */}
-            </header>
+            </header>) : null}
+
             {showSearch && (
                 <SearchModal
                     backendQuery={backendQuery}
