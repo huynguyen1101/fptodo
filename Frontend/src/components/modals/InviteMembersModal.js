@@ -57,7 +57,7 @@ const InviteMembersModal = ({ project, setShowModal }) => {
                     className="label-modal__input"
                     type="text"
                     name="members"
-                    placeholder="e.g. vikhyat@trello.com"
+                    placeholder="e.g. abc@fpt.edu.vn"
                     value={members}
                     onChange={(e) => setMembers(e.target.value)}
                 />

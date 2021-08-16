@@ -12,6 +12,7 @@ from users.serializers import UserSerializer
 from .models import Attachment, Board, Comment, Item, Label, List, Notification
 import logging
 
+
 class LabelSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -53,12 +54,13 @@ class ListSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = List
-        exclude = ['board']
+        # exclude = ['board']
+        fields = ['board', 'title', 'order', 'created_at', 'items', 'id']
 
     def get_items(self, obj):
         queryset = Item.objects.filter(list=obj).order_by('order')
         return ItemSerializer(queryset, many=True).data
-        
+
 
 # For homepage, exclude lists
 class ShortBoardSerializer(serializers.ModelSerializer):

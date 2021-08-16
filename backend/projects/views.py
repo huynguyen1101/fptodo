@@ -23,7 +23,7 @@ class ProjectList(mixins.ListModelMixin, mixins.CreateModelMixin,
 
     def get_serializer_class(self):
         if self.request.method == 'GET':
-            return ShortProjectSerializer 
+            return ShortProjectSerializer
 
         return ProjectSerializer
 
@@ -150,11 +150,12 @@ class SendProjectInvite(APIView):
         for username in users:
             try:
                 logger.info("Come here")
-                # 
+                #
                 user = User.objects.get(username=username)
-                logger.info("User: " )
+                logger.info("User: ")
                 # Can't invite a member
-                logger.info(ProjectMembership.objects.filter(project=project, member=user).exists())
+                logger.info(ProjectMembership.objects.filter(
+                    project=project, member=user).exists())
                 logger.info(project.owner == user)
                 if ProjectMembership.objects.filter(project=project, member=user).exists() or project.owner == user:
                     logger.info("Can't invite a member")
@@ -171,19 +172,20 @@ class SendProjectInvite(APIView):
 
                 # if from_email=None, uses DEFAULT_FROM_EMAIL from settings.py
                 result = send_mail(subject, message, from_email=None,
-                          recipient_list=[to_email])
+                                   recipient_list=[to_email])
                 logger.info(result)
                 # Notification
                 Notification.objects.create(
                     actor=request.user, recipient=user, verb='invited you to', target=project)
 
-                if result==1:
+                if result == 1:
                     return Response({"message": "Email sent"}, status=status.HTTP_200_OK)
                 else:
                     return Response({"message": "Email send failed"}, status=status.HTTP_406_NOT_ACCEPTABLE)
             except User.DoesNotExist:
                 continue
         return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class AcceptProjectInvite(APIView):
     def get(self, request, token, format=None):

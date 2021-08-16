@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import board from "../../static/img/board.svg";
+import board from "../../static/img/board1.svg";
 import greenface from "../../static/img/greenface.svg";
 import { modalBlurHandler, authAxios } from "../../static/js/util";
 import { backendUrl } from "../../static/js/const";

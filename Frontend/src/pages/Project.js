@@ -1,4 +1,4 @@
-import React, { useState, useContext, useEffect, useRef } from "react";
+import React, { useState, useContext, useEffect, useRef, useReducer } from "react";
 import qs from "qs";
 import { v4 as uuidv4 } from "uuid";
 import HomeBoard from "../components/boards/HomeBoard";
@@ -10,16 +10,18 @@ import useDocumentTitle from "../hooks/useDocumentTitle";
 import { authAxios } from "../static/js/util";
 import { backendUrl } from "../static/js/const";
 import { useHistory } from "react-router-dom";
-
 import { useForm } from "react-hook-form";
 import InviteMembersModal from "../components/modals/InviteMembersModal";
 import ChangePermissionsModal from "../components/modals/ChangePermissionsModal";
 import Error404 from "./Error404";
 
+
 const defaultImageUrl =
     "https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2250&q=80";
 
 const Project = (props) => {
+
+
     const { id } = props.match.params;
     const { tab } = qs.parse(props.location.search, {
         ignoreQueryPrefix: true,
@@ -28,6 +30,8 @@ const Project = (props) => {
 
     const [curTab, setCurTab] = useState(tab || 1);
     const [isEditing, setIsEditing] = useState(false);
+
+
     const [isInviting, setIsInviting] = useState(false);
     useBlurSetState(".label-modal", isInviting, setIsInviting);
 
@@ -35,9 +39,14 @@ const Project = (props) => {
         `/projects/${id}/`
     );
     const { data: boards, addItem: addBoard } = useAxiosGet(
-        "/boards?project=" + id
+        "/boards/?project=" + id
     );
     useDocumentTitle(project ? `${project.title} | FPTODO` : "");
+
+    const {
+        replaceItem: replaceBoard,
+    } = useAxiosGet("/boards/");
+
 
     if (!project && loading) return null;
     if (!project && !loading) return <Error404 />; // No project with given id
@@ -54,6 +63,8 @@ const Project = (props) => {
             <div className="team__header">
                 <div className="team__header-content">
                     <div className="team__header-top">
+
+
                         <img
                             src={project.image || defaultImageUrl}
                             alt="Team"
@@ -61,6 +72,7 @@ const Project = (props) => {
                         {!isEditing ? (
                             <div className="team__profile">
                                 <p>{project.title}</p>
+                                <h1>{project.description}</h1>
                                 {authUserAccessLevel === 2 && (
                                     <button
                                         className="btn btn--secondary btn--medium"
@@ -78,35 +90,32 @@ const Project = (props) => {
                                 setIsEditing={setIsEditing}
                             />
                         )}
+
                     </div>
                     <ul className="team__header-bottom">
                         <li
-                            className={`team__tab${
-                                curTab == 1 ? " team__tab--active" : ""
-                            }`}
+                            className={`team__tab${curTab == 1 ? " team__tab--active" : ""
+                                }`}
                             onClick={() => setCurTab(1)}
                         >
                             Boards
                         </li>
                         <li
-                            className={`team__tab${
-                                curTab == 2 ? " team__tab--active" : ""
-                            }`}
+                            className={`team__tab${curTab == 2 ? " team__tab--active" : ""
+                                }`}
                             onClick={() => setCurTab(2)}
                         >
                             Members
                         </li>
                         <li
-                            className={`team__tab${
-                                curTab == 3 ? " team__tab--active" : ""
-                            }`}
+                            className={`team__tab${curTab == 3 ? " team__tab--active" : ""
+                                }`}
                         >
                             Settings
                         </li>
                         <li
-                            className={`team__tab${
-                                curTab == 4 ? " team__tab--active" : ""
-                            }`}
+                            className={`team__tab${curTab == 4 ? " team__tab--active" : ""
+                                }`}
                         >
                             Business Class
                         </li>
@@ -117,7 +126,7 @@ const Project = (props) => {
                 {curTab == 1 && (
                     <div className="team__boards">
                         {(boards || []).map((board) => (
-                            <HomeBoard board={board} key={uuidv4()} />
+                            <HomeBoard board={board} key={uuidv4()} replaceBoard={replaceBoard} />
                         ))}
                     </div>
                 )}
@@ -150,6 +159,14 @@ const Project = (props) => {
                         </ul>
                     </div>
                 )}
+                {curTab == 3 && (
+                    <div className="team__boards">
+                        {(boards || []).map((board) => (
+                            <HomeBoard board={board} key={uuidv4()} replaceBoard={replaceBoard} />
+                        ))}
+                    </div>
+
+                )}
             </div>
             {authUserAccessLevel === 2 && isInviting && (
                 <InviteMembersModal
@@ -162,6 +179,7 @@ const Project = (props) => {
 };
 
 const EditForm = ({ project, setProject, setIsEditing }) => {
+
     const { register, setValue, handleSubmit, errors, watch } = useForm();
     const titleValue = watch("title", "");
 
@@ -186,18 +204,28 @@ const EditForm = ({ project, setProject, setIsEditing }) => {
         <form className="team__edit-form" onSubmit={handleSubmit(onSubmit)}>
             <label htmlFor="title">Name</label>
             <input
+
                 name="title"
                 ref={register({ required: true })}
                 type="text"
+
             />
 
             <label htmlFor="description">Project Description</label>
             <textarea name="description" ref={register}></textarea>
+            {/* <input
+                name="description"
+                ref={register({ required: true })}
+                type="text"
+            /> */}
 
             {titleValue.trim() !== "" ? (
-                <button className="btn btn--medium">Save</button>
+                <button className="btn btn--medium"
+
+                >Save</button>
             ) : (
-                <button className="btn btn--medium btn--disabled" disabled>
+                <button className="btn btn--medium btn--disabled" disabled
+                >
                     Save
                 </button>
             )}
@@ -207,6 +235,7 @@ const EditForm = ({ project, setProject, setIsEditing }) => {
             >
                 Cancel
             </button>
+
         </form>
     );
 };
@@ -264,16 +293,16 @@ const Member = ({ user, authUser, setProject }) => {
                 )}
                 {(authUser.username === user.username ||
                     authUser.access_level === 2) && (
-                    <button
-                        className="btn btn--secondary btn--small"
-                        onClick={removeMember}
-                    >
-                        <i className="fal fa-times"></i>
-                        {authUser.username === user.username
-                            ? "Leave"
-                            : "Remove"}
-                    </button>
-                )}
+                        <button
+                            className="btn btn--secondary btn--small"
+                            onClick={removeMember}
+                        >
+                            <i className="fal fa-times"></i>
+                            {authUser.username === user.username
+                                ? "Leave"
+                                : "Remove"}
+                        </button>
+                    )}
             </div>
             {isChangingPermission && (
                 <ChangePermissionsModal

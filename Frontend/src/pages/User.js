@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo, useContext, } from "react";
+import React, { useState, useEffect, useContext, useReducer, } from "react";
 import { Link } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import bg4 from "../static/img/bg4.jpg";
@@ -20,6 +20,10 @@ import 'reactjs-popup/dist/index.css';
 
 import ProfilePic from "../components/boards/ProfilePic";
 import globalContext from "../context/globalContext";
+import {
+  globalReducer,
+  UPDATE_PROFILE,
+} from "../../src/context/globalReducer";
 
 const User = (props) => {
   const [user, setUser] = React.useState(props.user);
@@ -30,7 +34,7 @@ const User = (props) => {
   const [popUpStatus, setPopUpStatus] = useState("");
   const [popUpMessage, setPopUpMessage] = useState("");
 
-  const { authUser, board } = useContext(globalContext);
+  const [authUser, setAuthUser] = React.useState(useContext(globalContext).authUser);
 
   const token = localStorage.getItem("accessToken");
   const config = {
@@ -41,15 +45,16 @@ const User = (props) => {
     try {
       const url = backendUrl + `/update_profile/${props.user.id}/`;
       await axios.put(url, user, config);
-      setShowPopUp(true)
-      setPopUpTitle("Update Success")
-      setPopUpStatus("Success")
-      setPopUpMessage("Your profile has been updated!")
+      setShowPopUp(true);
+      setPopUpTitle("Update Success");
+      setPopUpStatus("Success");
+      setPopUpMessage("Your profile has been updated!");
+      setAuthUser(user)
     } catch (e) {
-      setShowPopUp(true)
-      setPopUpTitle("Update Fail")
-      setPopUpStatus("Fail")
-      setPopUpMessage(e.response?.data?.mess ? e.response?.data?.mess : 'Cannot get response from server')
+      setShowPopUp(true);
+      setPopUpTitle("Update Fail");
+      setPopUpStatus("Fail");
+      setPopUpMessage(e.response?.data?.mess ? e.response?.data?.mess : 'Cannot get response from server');
     }
   }
 
@@ -57,7 +62,7 @@ const User = (props) => {
     const value = e.target.value;
     let new_user = { ...user }
     new_user[e.target.name] = value
-    setUser(new_user)
+    setUser({ ...new_user, full_name: new_user.first_name + " " + new_user.last_name })
   }
 
   const handleUserCountryChange = (e) => {
@@ -71,6 +76,13 @@ const User = (props) => {
     new_user['city'] = e
     setUser(new_user)
   }
+
+  const [globalState, dispatch] = useReducer(globalReducer, {
+    authUser: null,
+    checkedAuth: false,
+    board: null,
+    setBoard: null,
+  });
 
 
   useEffect(() => {
@@ -100,7 +112,7 @@ const User = (props) => {
 
               <div className="card-user">
                 <div className="image">
-                  <img className="bg4-user" src={bg4} />
+                  <img clasdsName="bg4-user" src={bg4} />
                 </div>
                 <div className="card-body">
                   <div className="author">

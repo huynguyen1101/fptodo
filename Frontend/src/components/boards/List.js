@@ -35,6 +35,8 @@ const List = ({ list, index }) => {
     const [cardTitle, setCardTitle] = useState("");
     const [editingTitle, setEditingTitle] = useState(false);
 
+    const [title, setTitle] = useState(list.title);
+
     useBlurSetState(".list__add-card-form", addingCard, setAddingCard);
     useBlurSetState(".list__title-edit", editingTitle, setEditingTitle);
 
@@ -104,6 +106,18 @@ const List = ({ list, index }) => {
                                     setEditingTitle={setEditingTitle}
                                 />
                             )}
+                            {/* {editingTitle ? (
+                                <form onSubmit={onAddCard}>
+                                    <input
+                                        className="card__title-edit"
+                                        type="text"
+                                        value={title}
+                                        onChange={(e) => setTitle(e.target.value)}
+                                    />
+                                </form>
+                            ) : (
+                                <p className="card__title" onClick={() => setEditingTitle(true)}>{list.title}</p>
+                            )} */}
                             <i className="far fa-ellipsis-h"></i>
                         </div>
                         <Droppable droppableId={list.id.toString()} type="item">
